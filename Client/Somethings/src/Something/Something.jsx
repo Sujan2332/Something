@@ -35,7 +35,7 @@ function ImageUploader() {
 
 console.log("USER", user)
   console.log("UPDATED USER : ",updatedUser)
-  const backend = `http://localhost:5000`;
+  const backend = `https://something-backend.onrender.com/`;
   console.log("UPDated user:",updatedUser)
 
   // Function to get User ID from localStorage
@@ -61,7 +61,7 @@ console.log("USER", user)
     setLikesData(storedLikesData);
 
     if (storedUserId) {
-      axios.get(`${backend}/api/users/user/${storedUserId}`)
+      axios.get(`${backend}api/users/user/${storedUserId}`)
         .then(response => {
           setUser(response.data.user);
           setUpdatedUser(response.data.user); // Initialize updatedUser with current user details
@@ -72,7 +72,7 @@ console.log("USER", user)
 
   // Handle profile photo fallback
   const handleProfilePhoto = () => {
-    return user && user.profilephoto ? `${user.profilephoto}` : `${backend}/${user.profilephoto}`;
+    return user && user.profilephoto ? `${user.profilephoto}` : `${backend}${user.profilephoto}`;
   };
 
   // Handle input changes for editing
@@ -108,7 +108,7 @@ console.log("USER", user)
     }
   
     // Send a PATCH request to update user data, including the file
-    axios.patch(`${backend}/api/users/update/${userId}`, formData)
+    axios.patch(`${backend}api/users/update/${userId}`, formData)
       .then(response => {
         console.log("Profile updated successfully", response);
         setUser(updatedUser); // Update the user state with the new data
@@ -132,7 +132,7 @@ const toggleHeart = async (uniqueId) => {
 
   try {
     // Send updated like state to the backend
-    const response = await axios.patch(`http://localhost:5000/api/something/upload/${uniqueId}`, {
+    const response = await axios.patch(`${backend}api/something/upload/${uniqueId}`, {
       userId,
       isLiked: newLikeState,
     });
@@ -183,7 +183,7 @@ const toggleHeart = async (uniqueId) => {
   const fetchUploads = useCallback(async () => {
     setIsLoading(true)
     try {
-      const response = await fetch("http://localhost:5000/api/something/getAllUploads");
+      const response = await fetch("${backend}api/something/getAllUploads");
       const data = await response.json();
       setUploads(data);
 
@@ -250,7 +250,7 @@ const toggleHeart = async (uniqueId) => {
   
       // Send POST request with Authorization header containing the token
       const uploadResponse = await fetch(
-        "http://localhost:5000/api/something/addSomething",
+        `${backend}api/something/addSomething`,
         {
           method: "POST",
           headers: {
@@ -285,7 +285,7 @@ const toggleHeart = async (uniqueId) => {
       try {
         // Fetch current uploads
         const uploadsResponse = await fetch(
-          "http://localhost:5000/api/something/getAllUploads"
+          `${backend}api/something/getAllUploads`
         );
         const uploadsData = await uploadsResponse.json();
   
@@ -332,7 +332,7 @@ const toggleHeart = async (uniqueId) => {
       setIsLoading(true)
       // Sending the PATCH request with the correct uniqueId
       const response = await axios.patch(
-        `http://localhost:5000/api/something/upload/${currentUploadId}`,  // Make sure this ID is correct
+        `${backend}api/something/upload/${currentUploadId}`,  // Make sure this ID is correct
         newCommentData
       );
       
@@ -349,7 +349,7 @@ const toggleHeart = async (uniqueId) => {
   const fetchComments = useCallback(async (uploadId) => {
     setIsLoading(true)
     try {
-      const response = await axios.get(`http://localhost:5000/api/something/getPost/${uploadId}`);
+      const response = await axios.get(`${backend}api/something/getPost/${uploadId}`);
       setComments(response.data.comments);  // Assuming you have a state for comments
       console.log(response.data.comments);
   
@@ -363,7 +363,7 @@ const toggleHeart = async (uniqueId) => {
   }, [fetchUploads]);  
 
   const handleShareClick = (uploadId)=>{
-    const shareUrl = `http://localhost:5000/api/something/getPost/${uploadId}`;
+    const shareUrl = `${backend}/api/something/getPost/${uploadId}`;
     navigator.share({
       title:"Check This Out!",
       url: shareUrl,
@@ -382,7 +382,7 @@ const toggleHeart = async (uniqueId) => {
             return;
         }
 
-        const response = await axios.delete(`http://localhost:5000/api/something/delete/${uniqueId}`, {
+        const response = await axios.delete(`${backend}api/something/delete/${uniqueId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -903,7 +903,7 @@ const toggleHeart = async (uniqueId) => {
               
               <div style={{display:"flex",alignItems:"end",justifyContent:"end",width:"100%",background:"transparent",marginBottom:"20px",marginTop:"10px"}}>
               <div style={{background:"transparent",display:"flex",alignItems:"center",justifyContent:"left",width:"80%",height:"50px"}}>
-                <img src={upload.profilePhoto ? `${upload.profilePhoto}` : `${backend}/${upload.profilePhoto}` } alt={upload.username} width="60px" height="60px" style={{borderRadius:"50%",margin:"none",border:"2px solid black",width:"60px",height:"60px"}}/>
+                <img src={upload.profilePhoto ? `${upload.profilePhoto}` : `${backend}${upload.profilePhoto}` } alt={upload.username} width="60px" height="60px" style={{borderRadius:"50%",margin:"none",border:"2px solid black",width:"60px",height:"60px"}}/>
                 <h4 style={{background:"transparent",margin:"none",textDecoration:"underline"}}>{upload.username}</h4>
                 </div>
               <select
@@ -1011,7 +1011,7 @@ const toggleHeart = async (uniqueId) => {
       {/* Render the username, profile photo, and comment text */}
       <div style={{ display: "flex", alignItems: "center",flexDirection:"row",marginBottom:"0px",marginTop:"-10px" }}>
       <img
-  src={comment.profilePhoto ? `${comment.profilePhoto}` : `${backend}/${comment.profilePhoto}`} // Ensure profile photo URL is absolute
+  src={comment.profilePhoto ? `${comment.profilePhoto}` : `${backend}${comment.profilePhoto}`} // Ensure profile photo URL is absolute
   alt={comment.username}
   style={{ width: "45px", height: "45px", borderRadius: "50%", marginRight: "" }}
 />
