@@ -127,7 +127,7 @@ const toggleHeart = async (uniqueId) => {
 
   try {
     // Send updated like state to the backend
-    const response = await axios.patch(`http://localhost:5000/api/something/upload/${uniqueId}`, {
+    const response = await axios.patch(`${backend}/api/something/upload/${uniqueId}`, {
       userId,
       isLiked: newLikeState,
     });
@@ -178,7 +178,7 @@ const toggleHeart = async (uniqueId) => {
   const fetchUploads = useCallback(async () => {
     setIsLoading(true)
     try {
-      const response = await fetch("http://localhost:5000/api/something/getAllUploads");
+      const response = await fetch(`${backend}/api/something/getAllUploads`);
       const data = await response.json();
       setUploads(data);
 
@@ -249,7 +249,7 @@ const toggleHeart = async (uniqueId) => {
   
       // Send POST request with Authorization header containing the token
       const uploadResponse = await fetch(
-        "http://localhost:5000/api/something/addSomething",
+        `${backend}/api/something/addSomething`,
         {
           method: "POST",
           headers: {
@@ -284,7 +284,7 @@ const toggleHeart = async (uniqueId) => {
       try {
         // Fetch current uploads
         const uploadsResponse = await fetch(
-          "http://localhost:5000/api/something/getAllUploads"
+          `${backend}/api/something/getAllUploads`
         );
         const uploadsData = await uploadsResponse.json();
   
@@ -331,7 +331,7 @@ const toggleHeart = async (uniqueId) => {
       setIsLoading(true)
       // Sending the PATCH request with the correct uniqueId
       const response = await axios.patch(
-        `http://localhost:5000/api/something/upload/${currentUploadId}`,  // Make sure this ID is correct
+        `${backend}/api/something/upload/${currentUploadId}`,  // Make sure this ID is correct
         newCommentData
       );
       
@@ -348,7 +348,7 @@ const toggleHeart = async (uniqueId) => {
   const fetchComments = useCallback(async (uploadId) => {
     setIsLoading(true)
     try {
-      const response = await axios.get(`http://localhost:5000/api/something/getPost/${uploadId}`);
+      const response = await axios.get(`${backend}/api/something/getPost/${uploadId}`);
       setComments(response.data.comments);  // Assuming you have a state for comments
       console.log(response.data.comments);
   
@@ -362,7 +362,7 @@ const toggleHeart = async (uniqueId) => {
   }, [fetchUploads]);  
 
   const handleShareClick = (uploadId)=>{
-    const shareUrl = `http://localhost:5000/api/something/getPost/${uploadId}`;
+    const shareUrl = `${backend}/api/something/getPost/${uploadId}`;
     navigator.share({
       title:"Check This Out!",
       url: shareUrl,
@@ -381,7 +381,7 @@ const toggleHeart = async (uniqueId) => {
             return;
         }
 
-        const response = await axios.delete(`http://localhost:5000/api/something/delete/${uniqueId}`, {
+        const response = await axios.delete(`${backend}/api/something/delete/${uniqueId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -1020,7 +1020,6 @@ const toggleHeart = async (uniqueId) => {
       <p style={{ textAlign: "left", width: "100%",textAlign:"center" }}>
       {formatTextWithLinksAndHashtags(comment.text)} {/* Assuming 'text' is the field name for the comment */}
       </p>
-      {/* <img src="https://somethingsposts.s3.us-east-1.amazonaws.com/uploads/images/4f43" alt="" style={{border:"2px solid red"}} width="500px"/> */}
     </div>
   ))
 ) : (
