@@ -71,7 +71,7 @@ const Signup = () => {
     formDataToSend.append("confirmPassword", trimmedConfirmPassword);
   
     try {
-      const response = await axios.post("http://localhost:5000/api/users/signup", formDataToSend, {
+      const response = await axios.post("https://something-backend.onrender.com/api/users/signup", formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data', // Important to set for file upload
         },
