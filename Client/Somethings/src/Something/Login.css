@@ -1,0 +1,113 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 855px;
+    /* border: 2px solid red; */
+    /* margin-top: -50px; */
+}
+.loginform{
+       /* border: 2px solid red; */
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       height: 600px;
+       width: 25%;
+       font-size: 20px;
+       justify-content: space-evenly;
+       transition: all 0.3s ease-in-out;
+       border-radius: 15px;
+       margin-top: 30px;
+}
+.loginform:hover{
+    transform: translateX(-5px) translateY(-10px) scale(1.05);
+    box-shadow: 5px 5px 5px white;
+    }
+
+h2{
+    text-decoration: underline;
+}
+.loginheading{
+    margin-top: -10px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: rgb(0, 0, 0);
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    width: 350px;
+    gap:40px;
+    height: 580px;
+    border-radius: 15px;
+    transition: 0.3s ease-in-out;
+    margin-bottom: -40px;
+  }
+  .modal-content:hover{
+    box-shadow: 5px 5px 5px white;
+    transform: scale(1.05) translateX(-5px) translateY(-10px);
+  }
+  
+  .modalform{
+    /* border: 2px solid red; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 250px;
+    margin-top: 30px;
+    gap:30px;
+  }
+  .modal-content input {
+    width: 100%;
+    height: 50px;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .modal-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: 1px solid darkgray;
+    background: white;
+    color: black;
+    font-weight: 600;
+  }
+
+  .btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .close{
+    border-radius: 50px;
+  }
+  .title{
+    margin-top: -20px;
+  }
+  

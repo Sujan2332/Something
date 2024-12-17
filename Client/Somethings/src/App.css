@@ -1,0 +1,40 @@
+/* App.css */
+
+/* Define light and dark mode variables */
+:root {
+    --background-light: white;
+    --background-dark: black;
+    --text-light: black;
+    --text-dark: white;
+    --button-background-light: black;
+    --button-background-dark: white;
+    --button-text-light: white;
+    --button-text-dark: red;
+}
+
+/* Default theme: Light Mode */
+body {
+    background-color: var(--background-light);
+    color: var(--text-light);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button {
+    background-color: var(--button-background-light);
+    color: var(--button-text-light);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+button.dark-mode {
+    background-color: var(--button-background-dark);
+    color: var(--button-text-dark);
+}
