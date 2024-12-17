@@ -47,7 +47,7 @@ const Login = () => {
       console.log('Stored User Data:', localStorage.getItem("user"));
   
       alert(response.data.message);
-      navigate("/something", { state: { user: userData } });
+      navigate("/", { state: { user: userData } });
     } catch (err) {
       alert(err.response?.data?.message || err.message || "An Error Occurred");
       console.error('Login Error:', err);
@@ -149,7 +149,7 @@ const Login = () => {
           <button type="submit" className="signupbtn">
             Login
           </button>
-          <button type="button" onClick={() => navigate("/")} className="signupbtn">
+          <button type="button" onClick={() => navigate("/signup")} className="signupbtn">
             Sign Up ?
           </button>
         </div>

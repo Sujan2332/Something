@@ -4,6 +4,7 @@ import Signup from './Something/Signup';
 import Login from './Something/Login';
 import Something from './Something/Something';
 import "./App.css"
+
 const ProtectedRoute = ({ element }) => {
   const navigate = useNavigate();
   
@@ -27,13 +28,11 @@ const App = () => {
     <Router>
       <div className='App'>
         <Routes>
-          <Route path="/" element={<Signup />} />
+          {/* Set /something as the main root */}
+          <Route path="/" element={<ProtectedRoute element={<Something />} />} />
+          
           <Route path="/login" element={<Login />} />
-          {/* Protected Route for /something */}
-          <Route 
-            path="/something" 
-            element={<ProtectedRoute element={<Something />} />} 
-          />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
     </Router>
