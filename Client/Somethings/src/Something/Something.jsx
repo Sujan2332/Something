@@ -28,11 +28,7 @@ function ImageUploader() {
     }
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchUserData(); // Fetch user data
-    fetchUploads();  // Fetch uploads when the page loads
-}, [fetchUserData, fetchUploads]);
-
+  
 console.log("USER", user)
   console.log("UPDATED USER : ",updatedUser)
   const backend = `https://something-backend.onrender.com/`;
@@ -479,6 +475,12 @@ const toggleHeart = async (uniqueId) => {
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };
+
+  useEffect(() => {
+    fetchUserData(); // Fetch user data
+    fetchUploads();  // Fetch uploads when the page loads
+}, [fetchUserData, fetchUploads]);
+
   
   return (
     <div className="something" style={{ textAlign: "center", position: "relative" }}>
