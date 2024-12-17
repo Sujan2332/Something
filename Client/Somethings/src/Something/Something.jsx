@@ -28,6 +28,11 @@ function ImageUploader() {
     }
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetchUserData(); // Fetch user data
+    fetchUploads();  // Fetch uploads when the page loads
+}, [fetchUserData, fetchUploads]);
+
 console.log("USER", user)
   console.log("UPDATED USER : ",updatedUser)
   const backend = `http://localhost:5000`;
@@ -209,10 +214,6 @@ const toggleHeart = async (uniqueId) => {
       setSelectedFile(file);
     }
   };
-
-  const handlePPChange = ()=>{
-    set
-  }
 
   const getFileCategory = (file) => {
     const fileExtension = file.name.split('.').pop().toLowerCase();
