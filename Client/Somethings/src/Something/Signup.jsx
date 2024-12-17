@@ -16,7 +16,7 @@ const Signup = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);  // State for toggling password visibility
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);  // State for confirm password
   const navigate = useNavigate();
-  const backend = `http://localhost:5000`;
+  const backend = `https://something-backend.onrender.com`;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
