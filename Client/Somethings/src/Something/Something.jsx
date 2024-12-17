@@ -30,7 +30,7 @@ function ImageUploader() {
 
 console.log("USER", user)
   console.log("UPDATED USER : ",updatedUser)
-  const backend = `http://localhost:5000`;
+  const backend = `https://something-backend.onrender.com`;
   console.log("UPDated user:",updatedUser)
 
   // Function to get User ID from localStorage
