@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
-const API_BASE_URL = "https://something-backend.onrender.com"; // Temporary hardcoded value
+const API_BASE_URL = "http://localhost:5000"; // Temporary hardcoded value
 
 const Login = () => {
   const [email, setEmail] = useState("");

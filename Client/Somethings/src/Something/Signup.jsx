@@ -16,6 +16,7 @@ const Signup = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);  // State for toggling password visibility
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);  // State for confirm password
   const navigate = useNavigate();
+  const backend = `http://localhost:5000`;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,7 +72,7 @@ const Signup = () => {
     formDataToSend.append("confirmPassword", trimmedConfirmPassword);
   
     try {
-      const response = await axios.post("https://something-backend.onrender.com/api/users/signup", formDataToSend, {
+      const response = await axios.post(`${backend}/api/users/signup`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data', // Important to set for file upload
         },
