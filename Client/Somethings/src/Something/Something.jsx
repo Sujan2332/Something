@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
 import "./Something.css";
 // import "./style.css"
 import axios from "axios";
@@ -971,6 +972,16 @@ const toggleHeart = async (uniqueId) => {
               <div style={{background:"transparent",display:"flex",alignItems:"center",justifyContent:"left",width:"80%",height:"50px"}}>
                 <img src={upload.profilePhoto ? `${upload.profilePhoto}` : `${backend}/${upload.profilePhoto}` } alt={upload.username} width="60px" height="60px" style={{borderRadius:"50%",margin:"none",border:"2px solid black",width:"60px",height:"60px"}}/>
                 <h4 style={{background:"transparent",margin:"none",textDecoration:"underline"}}>{upload.username}</h4>
+                <span style={{margin:"0px 10px",background:"none"}}>•</span>
+                <h5 style={{background:"none"}}>
+                {upload.createdAt && !isNaN(new Date(upload.createdAt).getTime())
+    ? (new Date() - new Date(upload.createdAt) < 60000 // Check if within 1 minute
+        ? "Just now"
+        : formatDistanceToNow(new Date(upload.createdAt), { addSuffix: true })
+            .replace("about ", "")
+            .replace("less than ", ""))
+    : "Just now"}
+                  </h5>
                 </div>
               <select
   name="actionOptions"
