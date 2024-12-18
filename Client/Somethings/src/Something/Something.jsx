@@ -20,7 +20,13 @@ function ImageUploader() {
   const [isEditing, setIsEditing] = useState(false); // Flag for edit mode
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isImageOpen, setImageOpen] = useState(false)
+  const [image, setImage] = useState(null)
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
   const openModal = () => setModalOpen(true);
   const closeModal = () => 
     {setModalOpen(false);
@@ -28,11 +34,23 @@ function ImageUploader() {
     }
   const navigate = useNavigate();
 
-console.log("USER", user)
-  console.log("UPDATED USER : ",updatedUser)
   const backend = `http://localhost:5000`;
-  console.log("UPDated user:",updatedUser)
 
+  const handleImageClick = (image)=>{
+    setImageOpen(true)
+    setImage(image)
+  }
+  const handleModalClose = ()=>{
+    setImageOpen(false)
+    setImage(null)
+  }
+
+  const handleDownload = ()=>{
+    const link = document.createElement("a")
+    link.href = image
+    link.download = "Something.jpg"
+    link.click()
+  }
   // Function to get User ID from localStorage
   const getUserId = () => {
     const USERLOG = localStorage.getItem("user");
@@ -209,10 +227,6 @@ const toggleHeart = async (uniqueId) => {
       setSelectedFile(file);
     }
   };
-
-  const handlePPChange = ()=>{
-    set
-  }
 
   const getFileCategory = (file) => {
     const fileExtension = file.name.split('.').pop().toLowerCase();
@@ -564,20 +578,18 @@ const toggleHeart = async (uniqueId) => {
   </div>
 )}
   </div>
-  
-
-      <div className="heading">
+      <div className="heading" >
                 {/* *************************************88 */}
       <div className="header-container">
       {/* Menu Button */}
-      <div className="menu-button-container">
+      <div className="menu-button-container" style={{marginTop:"-3px"}}>
         <button className="menu-btn" onClick={toggleMenu}>
           ☰
         </button>
       </div>
       {/* Sidebar Menu */}
       <div className={`sidebar-menu ${isMenuVisible ? "visible" : ""}`}>
-        <div className="User">
+        <div className="User" style={{marginTop:"30px"}}>
       {user && (
         <div className="userprofile"  onClick={openProfileModal}> {/* Click to open profile modal */}
           <img
@@ -697,13 +709,71 @@ const toggleHeart = async (uniqueId) => {
       <div className="logout" style={{color:"red"}}>
           <button onClick={handleLogout}>Logout?</button>
         </div>
+        <div>
+          <ul>
+            <li>
+              <a href="https://sujan2332.github.io/Youtube-Reactjs/"><i class="fa-brands fa-youtube"></i> Youtube</a>
+            </li>
+            <li>
+              <a href="https://sujan2332.github.io/ChainReaction/"><i class="fa-solid fa-atom"></i> Chain Reaction</a>
+            </li>
+            <li>
+              <a href="https://sujan2332.github.io/TODO/"><i class="fa-solid fa-check"></i> Todo</a>
+            </li>
+            <li>
+              <a href="https://Sujan2332.github.io/IMDB-JS"><i class="fa-solid fa-clapperboard"></i> Movies</a>
+            </li>
+            <li>
+              <a href="https://sujan2332.github.io/WeatherApp/"><i class="fa-solid fa-cloud-bolt"></i> Weather</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
         {/* *************************************88 */}
       {/* <NavBar /> */}
-      
-      <div className="User">
-      {/* <Games/> */}
+      <div className="menu-container">
+      <button onClick={toggleDropdown} className="menu-toggle">
+      ☰ 
+      {/* <i className={`fa ${isDropdownOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i> */}
+      </button>
+      {isDropdownOpen && (
+        <ul className="dropdown-menu">
+          <li>
+            <a href="https://sujan2332.github.io/Youtube-Reactjs/">
+              <i className="fa-brands fa-youtube"></i> Youtube
+            </a>
+          </li>
+          <li>
+            <a href="https://sujan2332.github.io/ChainReaction/">
+              <i className="fa-solid fa-atom"></i> Chain Reaction
+            </a>
+          </li>
+          <li>
+            <a href="https://sujan2332.github.io/TODO/">
+              <i className="fa-solid fa-check"></i> Todo
+            </a>
+          </li>
+          <li>
+            <a href="https://Sujan2332.github.io/IMDB-JS">
+              <i className="fa-solid fa-clapperboard"></i> Movies
+            </a>
+          </li>
+          <li>
+            <a href="https://sujan2332.github.io/WeatherApp/">
+              <i className="fa-solid fa-cloud-bolt"></i> Weather
+            </a>
+          </li>
+        </ul>
+      )}
+    </div>
+    <div className="Navbar">
+    <div className="HeadTitle">
+        <h1 style={{color:"white"}}>
+          Something...<i class="fa-solid fa-infinity"></i>
+        </h1>
+      </div>
+    <div className="User">
       {user && (
         <div className="user-profile"  onClick={openProfileModal}> {/* Click to open profile modal */}
           <img
@@ -807,29 +877,26 @@ const toggleHeart = async (uniqueId) => {
               </div>
             ) : (
               <div style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center",gap:"20px",height:"70%",width:"80%",marginTop:"-50px"}}>
-                <img src={handleProfilePhoto()} width="100px" height="100px" alt="" style={{borderRadius:"50%",border:"2px solid white"}} />
+                <img src={handleProfilePhoto()} width="100px" height="100px" alt="" style={{borderRadius:"50%",marginTop:"-20px",border:"2px solid white",marginBottom:"15px"}} />
                 <h3> <span style={{textDecoration:"underline",marginRight:"10px"}}>Username: </span> <br />{updatedUser.username}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Email: </span><br /> {updatedUser.email}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Phone No.: </span><br /> {updatedUser.phone}</h3>
                 <button onClick={toggleEditMode} style={{ marginTop: '10px' }}>
                   Edit Profile
                 </button>
+                <div>
+        <button onClick={handleLogout} style={{ marginTop: '10px',color:"red", fontSize:"18px",fontWeight:"600" }}>
+          Logout ?
+        </button>
+            </div>
               </div>
             )}
           </div>
         </div>
       )}
       </div>
-      <div className="HeadTitle">
-        <h1 style={{color:"white"}}>
-          Something...<i class="fa-solid fa-infinity"></i>
-        </h1>
-      </div>
-      <div className="logout">
-        <button onClick={handleLogout}>
-          Logout ?
-        </button>
-      </div>
+    </div>
+      
       </div>
       <div className="MainSection">
       <div className="upload">
@@ -947,7 +1014,13 @@ const toggleHeart = async (uniqueId) => {
   {formatTextWithLinksAndHashtags(upload.text)}
 </h4>
               {/* <h4 style={{width:"100%",maxWidth:"100%",height:"auto",padding:"10px",wordWrap:"break-word",borderRadius:"15px",padding:"10px"}}>{upload.text}</h4> */}
-              {upload.imageFile && <img src={upload.imageFile} style={{margin:"20px",borderRadius:"15px",width:"100%"}} alt={upload.imageFile} className="upload-image" />}
+              {upload.imageFile && <img src={upload.imageFile} style={{margin:"20px",borderRadius:"15px",width:"100%"}} alt={upload.imageFile} className="upload-image" onClick={() => handleImageClick(upload.imageFile)}/>}
+              {isImageOpen && image && (<div style={{position:"fixed", top:0,left:0,width:"100%",height:"100%",background:"rgba(0, 0, 0, 0.15)",display:"flex",justifyContent:"center",alignItems:"center",zIndex:1000}} onClick={handleModalClose}>
+                <button onClick={handleDownload} style={{position:"absolute",top:30,right:"0",transform:"translate(-50%)",padding:"10px 20px",background:"white",color:"red",border:"none",borderRadius:"5px",cursor:"pointer",fontSize:"16px"}}><i class="fa-solid fa-download" style={{background:"none",color:"blue",fontSize:"20px",padding:"5px 0px"}}></i></button>
+                <div style={{position:"relative",borderRadius:"15px",display:"flex",justifyContent:"center",marginTop:"30px",alignItems:"center",padding:"10px",width:"85%",height:"85%",background:"none"}}>
+                  <img src={image} alt="Full Screen View" style={{minWidth:"30%",maxWidth:"100%",maxHeight:"100%",borderRadius:"10px",boxShadow:"8px 6px 8px rgba(255, 255, 255, 0.2),2px 8px 20px rgba(255, 255, 255, 0.19)"}} />
+                </div>
+              </div> )}
               {upload.videoFile && <video src={upload.videoFile} style={{margin:"20px",borderRadius:"15px", width:"100%"}}controls className="upload-video" />}
               {/* {upload.audioFile && <audio src={upload.audioFile} style={{margin:"20px",borderRadius:"15px"}} controls />} */}
               {upload.audioFile && (<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "20px", padding: "20px", borderRadius: "15px", background: "#1E1E1E",  boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",width: "100%", transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",}} onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}  >
