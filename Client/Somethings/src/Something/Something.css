@@ -10,6 +10,28 @@ body{
   background: linear-gradient(180deg,black,black);
 }
 
+.fa-infinity {
+  animation: rotateAnimation 2s infinite ease-in-out;
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    tran
+sform: rotate(360deg);
+  }
+}
 /* * SIDEBAR */
 
 /* Default Header Container */
