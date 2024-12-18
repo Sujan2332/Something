@@ -177,6 +177,7 @@ body{
   .heading{
       padding-left: 0px;
   padding-right: 0px;
+      border-left:none;
   }
   .HeadTitle{
     width: 100%;
