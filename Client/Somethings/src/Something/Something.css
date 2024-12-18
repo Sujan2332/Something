@@ -324,6 +324,7 @@ color: blue;
   }
   .HeadTitle{
     width: 100%;
+    margin-left: 20px;
   }
   .something {
     flex-direction: row;
@@ -648,7 +649,9 @@ body {
   .feeds {
     width: 95%;
   }
-
+  .HeadTitle{
+    margin-left: 50px;
+  }
   .card {
     padding: 10px;
   }
@@ -664,7 +667,6 @@ body {
   .heading{
     padding-top: 10px;
     padding-bottom: 10px;
-    border-left: none;
     border-bottom: 1px solid white;
   }
 }

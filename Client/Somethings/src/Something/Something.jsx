@@ -975,13 +975,13 @@ const toggleHeart = async (uniqueId) => {
                 <span style={{margin:"0px 10px",background:"none"}}>•</span>
                 <h5 style={{background:"none"}}>
                 {upload.createdAt && !isNaN(new Date(upload.createdAt).getTime())
-    ? (new Date() - new Date(upload.createdAt) < 60000 // Check if within 1 minute
-        ? "Just now"
-        : formatDistanceToNow(new Date(upload.createdAt), { addSuffix: true })
-            .replace("about ", "")
-            .replace("less than ", ""))
-    : "Just now"}
-                  </h5>
+                ? (new Date() - new Date(upload.createdAt) < 60000 // Check if within 1 minute
+                ? "Just now"
+                : formatDistanceToNow(new Date(upload.createdAt), { addSuffix: true })
+                .replace("about ", "")
+                .replace("less than ", ""))
+                : "Just now"}
+                </h5>
                 </div>
               <select
   name="actionOptions"
