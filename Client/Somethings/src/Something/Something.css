@@ -11,11 +11,7 @@ body{
 }
 
 .fa-infinity {
-<<<<<<< HEAD
   animation: rotateAnimation 0.46s infinite ease-in-out;
-=======
-  animation: rotateAnimation 2s infinite ease-in-out;
->>>>>>> b4e1d3d8ef48a8dfddf319b7c288f3ab66d85ea9
 }
 
 @keyframes rotateAnimation {
@@ -35,7 +31,6 @@ body{
     transform: rotate(360deg);
   }
 }
-<<<<<<< HEAD
 /* * MENU */
 .menu-container {
   position: relative;
@@ -131,8 +126,6 @@ body{
   }
 }
 
-=======
->>>>>>> b4e1d3d8ef48a8dfddf319b7c288f3ab66d85ea9
 /* * SIDEBAR */
 
 /* Default Header Container */
@@ -328,7 +321,6 @@ color: blue;
   .heading{
       padding-left: 0px;
   padding-right: 0px;
-      border-left:none;
   }
   .HeadTitle{
     width: 100%;

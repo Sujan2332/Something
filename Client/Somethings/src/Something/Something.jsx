@@ -34,14 +34,7 @@ function ImageUploader() {
     }
   const navigate = useNavigate();
 
-<<<<<<< HEAD
   const backend = `http://localhost:5000`;
-=======
-console.log("USER", user)
-  console.log("UPDATED USER : ",updatedUser)
-  const backend = `https://something-backend.onrender.com`;
-  console.log("UPDated user:",updatedUser)
->>>>>>> b4e1d3d8ef48a8dfddf319b7c288f3ab66d85ea9
 
   const handleImageClick = (image)=>{
     setImageOpen(true)
