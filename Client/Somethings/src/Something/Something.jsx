@@ -418,53 +418,62 @@ const toggleHeart = async (uniqueId) => {
       setIsLoading(false)
     }
 };  
+  
+const formatTextWithLinksAndHashtags = (text) => {
+  if (!text) return null;
 
-  const formatTextWithLinksAndHashtags = (text) => {
-    if (!text) return null;
-  
-    return text.split(/(\s+)/).map((part, index) => {
-      const hashtagRegex = /#\w+/;
-      const tagRegex = /@\w+/
-      const urlRegex = /(https?:\/\/[^\s]+)/;
-  
-      if (hashtagRegex.test(part)) {
-        // Render hashtags in blue and on a new line
-        return (
-          <span
-            key={index}
-            style={{ color: "blue", display: "block", marginBottom: "5px" }}
-          >
-            {part}
-          </span>
-        );
-      }else if(tagRegex.test(part)){
-        return (
-          <span key={index} style={{color:"blue",display:"block",marginBottom:"5px"}}>{part}</span>
-        )
-      } else if (urlRegex.test(part)) {
-        // Render links in blue and clickable
-        return (
-          <a
-            key={index}
-            href={part}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: "blue",
-              display: "block",
-              textDecoration: "none",
-              marginBottom: "5px",
-            }}
-          >
-            {part}
-          </a>
-        );
-      } else {
-        // Render regular text as it is
-        return <span key={index}>{part}</span>;
-      }
-    });
-  };
+  return text.split(/\n/).map((line, lineIndex) => (
+    <div key={lineIndex} style={{ marginBottom: "10px" }}>
+      {line.split(/(\s+)/).map((part, index) => {
+        const hashtagRegex = /#\w+/;
+        const tagRegex = /@\w+/;
+        const urlRegex = /(https?:\/\/[^\s]+)/;
+
+        if (hashtagRegex.test(part)) {
+          // Render hashtags in blue
+          return (
+            <span
+              key={index}
+              style={{ color: "blue", marginRight: "5px" }}
+            >
+              {part}
+            </span>
+          );
+        } else if (tagRegex.test(part)) {
+          // Render mentions in blue
+          return (
+            <span
+              key={index}
+              style={{ color: "blue", marginRight: "5px" }}
+            >
+              {part}
+            </span>
+          );
+        } else if (urlRegex.test(part)) {
+          // Render links in blue and clickable
+          return (
+            <a
+              key={index}
+              href={part}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "blue",
+                textDecoration: "none",
+                marginRight: "5px",
+              }}
+            >
+              {part}
+            </a>
+          );
+        } else {
+          // Render regular text as it is
+          return <span key={index}>{part}</span>;
+        }
+      })}
+    </div>
+  ));
+};
 
   const openProfileModal = () => {
     setShowProfileModal(true); // Show profile modal
