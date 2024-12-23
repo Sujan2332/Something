@@ -386,14 +386,20 @@ const toggleHeart = async (uniqueId) => {
   }, [fetchUploads]);  
 
   const handleShareClick = (uploadId) => {
-    const shareUrl = `/post/${uploadId}`;
-    navigator.share({
-      title: "Check This Out!",
-      image: `https://somethingsposts.s3.us-east-1.amazonaws.com/uploads/svgviewer-output%20(1).png`,
-      url: shareUrl,
-    })
-    .catch((error) => console.error("Error Sharing:", error));
+  const shareUrl = `/post/${uploadId}`;
+  const shareData = {
+    title: "Check This Out!",
+    text: "Shared from our app",
+    url: shareUrl,
   };
+
+  if (navigator.canShare(shareData)) {
+    navigator.share(shareData)
+      .catch((error) => console.error("Error Sharing:", error));
+  } else {
+    console.log("Browser does not support sharing this type of data.");
+  }
+};
 
   const handleDelete = async (uniqueId) => { 
     setIsLoading(true)
