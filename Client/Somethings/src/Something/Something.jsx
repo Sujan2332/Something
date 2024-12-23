@@ -385,14 +385,15 @@ const toggleHeart = async (uniqueId) => {
     }
   }, [fetchUploads]);  
 
-  const handleShareClick = (uploadId)=>{
+  const handleShareClick = (uploadId) => {
     const shareUrl = `/post/${uploadId}`;
     navigator.share({
-      title:"Check This Out!",
-      logo: logo,
+      title: "Check This Out!",
+      image: `${process.env.PUBLIC_URL}/assets/logo.png`,
       url: shareUrl,
-    }).catch((error)=>console.error("Error Sharing:",error))
-  }
+    })
+    .catch((error) => console.error("Error Sharing:", error));
+  };
 
   const handleDelete = async (uniqueId) => { 
     setIsLoading(true)
