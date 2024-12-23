@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 import "./Something.css";
+import logo from "../assets/logo.png"
 // import "./style.css"
 import axios from "axios";
 function ImageUploader() {
@@ -388,6 +389,7 @@ const toggleHeart = async (uniqueId) => {
     const shareUrl = `/post/${uploadId}`;
     navigator.share({
       title:"Check This Out!",
+      image: logo,
       url: shareUrl,
     }).catch((error)=>console.error("Error Sharing:",error))
   }
