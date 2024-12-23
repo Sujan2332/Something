@@ -389,7 +389,7 @@ const toggleHeart = async (uniqueId) => {
     const shareUrl = `/post/${uploadId}`;
     navigator.share({
       title: "Check This Out!",
-      image: `${process.env.PUBLIC_URL}/assets/logo.png`,
+      image: `https://somethingsposts.s3.us-east-1.amazonaws.com/uploads/svgviewer-output%20(1).png`,
       url: shareUrl,
     })
     .catch((error) => console.error("Error Sharing:", error));
