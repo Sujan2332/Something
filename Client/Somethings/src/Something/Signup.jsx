@@ -12,11 +12,12 @@ const Signup = () => {
     confirmPassword: "",
     profilePhoto: null,
   });
+  const [loading,setloading] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null);
   const [passwordVisible, setPasswordVisible] = useState(false);  // State for toggling password visibility
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);  // State for confirm password
   const navigate = useNavigate();
-  const backend = `https://something-backend.onrender.com`;
+  const backend = import.meta.env.VITE_REACT_BACKEND_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,8 +31,8 @@ const Signup = () => {
         alert("Please upload an image file.");
         return;
       }
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size must be less than 2MB.");
+      if (file.size > 5 * 1024 * 1024) {
+        alert("File size must be less than 5 MB.");
         return;
       }
       setSelectedImage(file);
@@ -48,7 +49,6 @@ const Signup = () => {
       alert("All fields are required.");
       return;
     }
-  
     // Trim and compare passwords
     let trimmedPassword = password.trim();
     let trimmedConfirmPassword = confirmPassword.trim();
@@ -62,7 +62,7 @@ const Signup = () => {
       alert("Password must be at least 8 characters long.");
       return;
     }
-  
+  setloading(true)
     const formDataToSend = new FormData();
     formDataToSend.append("username", username);
     formDataToSend.append("email", email);
@@ -70,7 +70,7 @@ const Signup = () => {
     formDataToSend.append("password", trimmedPassword);
     formDataToSend.append("profilePhoto", selectedImage);
     formDataToSend.append("confirmPassword", trimmedConfirmPassword);
-  
+
     try {
       const response = await axios.post(`${backend}/api/users/signup`, formDataToSend, {
         headers: {
@@ -83,6 +83,7 @@ const Signup = () => {
       // Check if error response contains a message from backend
       alert(err.response?.data?.message || err.message || "Error during signup.");
     }
+    setloading(false)
   };
 
   // Toggle password visibility
@@ -96,7 +97,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup">
+    <div className="signup" >
+      {loading && (
+    <div className="loading-overlay" style={{fontSize:"100px",zIndex:"9999"}}>
+      <div className="spinner"></div>
+      {/* <i class="fa-solid fa-infinity" style={{background:"transparent"}}></i> */}
+    </div>
+  )}
       <h1 className="title">Something...<i className="fa-solid fa-infinity"></i></h1>
       <form onSubmit={handleSubmit} className="signup-form" style={{minWidth:"330px"}}>
         <h2 style={{marginTop:"-20px"}}>Signup</h2>
@@ -168,8 +175,7 @@ const Signup = () => {
           type="file"
           id="file-input"
           name="profilePhoto"
-          onChange={handleFileChange}
-          
+          onChange={handleFileChange} 
         />
         <label htmlFor="file-input" className="custom-file-label" style={{width:"100%",marginTop:"-20px",marginBottom:"10px"}}>
           Profile Photo
@@ -179,7 +185,6 @@ const Signup = () => {
           <img
             src={URL.createObjectURL(selectedImage)}
             alt="Selected"
-            style={{ width: "100px", height: "auto",objectFit:"cover", marginTop: "-10px", border: "1px solid darkgrey" }}
           />
         )}
         <button type="submit" className="signupbtn">

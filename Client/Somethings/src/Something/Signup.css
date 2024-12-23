@@ -51,3 +51,61 @@ input{
     /* border: 2px solid red; */
     /* margin-top: -45px; */
 }
+.signup button{
+    transition: 0.3s ease-in-out;
+}
+.signup button:hover{
+    background: white;
+    color: red;
+}
+
+.signup img{
+width: 150px;
+/* height: 220px; */
+object-fit: cover;
+margin-top: -10px;
+border: 1px solid grey;
+}
+@media (max-width: 768px) {
+    .signup{
+        min-height:1270px;
+      }
+      .signup h1{
+        margin-top: -80px;
+        /* border: 2px solid red; */
+      }
+      .signup-form{
+        width: 80%;
+        min-height: 80%;
+        margin-top: 30px;
+        margin-bottom: -40px;
+      }
+      .signup-form input{
+        width: 80%;
+        height: 6%;
+        font-size: 20px;
+      }
+      .signup-form div{
+        width: 80%;
+        height: 6%;
+        border-radius:15px ;
+      }
+      .signup-form div input{
+        /* border: 2px solid red; */
+        width: 80%;
+        height: 100%;
+      }
+      .signup-form label{
+        font-size: 20px;
+      }
+      .signup-form h2{
+        font-size: 33px;
+      }
+      .signup img{
+        width: 200px;
+      }
+      .signup button{
+        font-size: 20px;
+      }
+
+}

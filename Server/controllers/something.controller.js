@@ -136,33 +136,38 @@ let getAllUploads = async (req, res) => {
 };
 
 // Get single upload by uniqueId (formatted with S3 URLs)
-let getSingleUpload = async (req, res) => {
+const getSingleUpload = async (req, res) => {
     try {
-        const { uniqueId } = req.params;
-
-        if (!uniqueId) {
-            return res.status(400).json({ error: true, message: "Unique ID is required" });
-        }
-
-        const upload = await Something.findOne({ uniqueId });
-
-        if (!upload) {
-            return res.status(404).json({ error: true, message: "Upload not found" });
-        }
-
-        // Format response to include S3 URLs for media files
-        res.status(200).json({
-            ...upload.toObject(),
-            imageFile: upload.imageFile ? upload.imageFile : null,
-            videoFile: upload.videoFile ? upload.videoFile : null,
-            audioFile: upload.audioFile ? upload.audioFile : null,
-            generalFile: upload.generalFile ? upload.generalFile : null,
-        });
+      const { uniqueId } = req.params;
+  
+      if (!uniqueId) {
+        return res.status(400).json({ error: true, message: "Unique ID is required" });
+      }
+  
+      const upload = await Something.findOne({ uniqueId });
+  
+      if (!upload) {
+        return res.status(404).json({ error: true, message: "Upload not found" });
+      }
+  
+      // Send the JSON response first
+      res.status(200).json({
+        ...upload.toObject(),
+        imageFile: upload.imageFile ? upload.imageFile : null,
+        videoFile: upload.videoFile ? upload.videoFile : null,
+        audioFile: upload.audioFile ? upload.audioFile : null,
+        generalFile: upload.generalFile ? upload.generalFile : null,
+      });
+  
+      // After sending the response, then redirect (this might cause the error you are seeing)
+      // It's best not to send both a JSON response and redirect in the same request
+      // res.redirect(frontendUrl); // Remove this if not needed
+  
     } catch (err) {
-        console.error("Error fetching upload by uniqueId:", err);
-        res.status(500).json({ error: true, message: "Error fetching upload", details: err.message });
+      console.error("Error fetching upload by uniqueId:", err);
+      res.status(500).json({ error: true, message: "Error fetching upload", details: err.message });
     }
-};
+  };  
 
 // Update likes and comments on a post
 const updateLikesAndComments = async (req, res) => {

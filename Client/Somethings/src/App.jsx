@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 import Signup from './Something/Signup';
 import Login from './Something/Login';
 import Something from './Something/Something';
+import Post from "./Something/Post.jsx"
 import "./App.css"
 
 const ProtectedRoute = ({ element }) => {
@@ -13,8 +14,6 @@ const ProtectedRoute = ({ element }) => {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      // If not logged in, show alert and navigate to login page
-      alert("Please log in first.");
       navigate("/login");
     }
   }, [isLoggedIn, navigate]); // Run effect on isLoggedIn change
@@ -30,9 +29,9 @@ const App = () => {
         <Routes>
           {/* Set /something as the main root */}
           <Route path="/" element={<ProtectedRoute element={<Something />} />} />
-          
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/post/:uniqueId" element={<Post />} />
         </Routes>
       </div>
     </Router>

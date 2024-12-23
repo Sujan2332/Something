@@ -415,6 +415,10 @@ color: blue;
 .MainSection{
   /* border: 2px solid red; */
   margin-top: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* !!!!!!!!!!!!!!!!!!! */
@@ -600,6 +604,8 @@ body {
 /* Feeds Section Styling */
 .feeds {
   width: 90%;
+  /* border: 2px solid red; */
+  min-width: 500px;
   max-width: 600px;
   margin: 20px auto;
 }
@@ -616,6 +622,7 @@ body {
   /* width: 100%; */
   /* border: 2px solid red; */
   align-items: center;
+  width: 100%;
 }
 
 .card h3 {
@@ -640,7 +647,9 @@ body {
   color: #666;
   font-size: 16px;
 }
-
+img{
+  object-fit: cover;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .upload {
@@ -651,6 +660,10 @@ body {
   }
   .HeadTitle{
     margin-left: 40px;
+  }
+  .upload{
+    /* width: 650px; */
+    width: 110%;
   }
   .card {
     padding: 10px;

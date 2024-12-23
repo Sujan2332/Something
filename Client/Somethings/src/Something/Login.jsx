@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
-const API_BASE_URL = `https://something-backend.onrender.com`; // Temporary hardcoded value
+// const API_BASE_URL = `https://something-backend.onrender.com`; // Temporary hardcoded value
+// const API_BASE_URL = `http://localhost:5000`; // Temporary hardcoded value
+
+const API_BASE_URL = import.meta.env.VITE_REACT_BACKEND_URL
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [loading,setloading] =useState(false)
   const [password, setPassword] = useState("");
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
   const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false);
@@ -22,9 +26,9 @@ const Login = () => {
   const togglePasswordVisibility = (setter) => setter((prev) => !prev);
 
   const handleLoginSubmit = async (e) => {
+    setloading(true)
     e.preventDefault();
     console.log("Login form submitted");
-  
     try {
       const response = await axios.post(`${API_BASE_URL}/api/users/login`, {
         email,
@@ -45,23 +49,25 @@ const Login = () => {
       // Store user data in localStorage
       localStorage.setItem("user", JSON.stringify(userData));
       console.log('Stored User Data:', localStorage.getItem("user"));
-  
       alert(response.data.message);
       navigate("/", { state: { user: userData } });
     } catch (err) {
       alert(err.response?.data?.message || err.message || "An Error Occurred");
       console.error('Login Error:', err);
+    } finally{
+      setloading(false)
     }
   };  
 
   const handleForgotPasswordSubmit = async (e) => {
     e.preventDefault();
+    setloading(true)
     try {
       const response = await axios.post(`${API_BASE_URL}/api/users/forgot-password`, {
         email,
       });
       setMessage(response.data.message);
-
+      setloading(false)
       setTimeout(() => setMessage(""), 3000);
 
       setIsForgotPasswordModalOpen(false);
@@ -78,6 +84,7 @@ const Login = () => {
       return;
     }
     try {
+    setloading(true);
       const response = await axios.post(`${API_BASE_URL}/api/users/reset-password/${resetToken}`, {
         password: newPassword,
       });
@@ -86,21 +93,30 @@ const Login = () => {
       setConfirmPassword("");
       alert("Password changed successfully!");
       setIsResetPasswordModalOpen(false);
-
       setTimeout(() => setMessage(""), 3000);
     } catch (err) {
       setMessage(err.response?.data?.message || err.message || "An Error Occurred. Please Try Again.");
+    } finally{
+      setloading(false)
     }
   };
 
   return (
     <div className="login">
+
+{loading && (
+    <div className="loading-overlay" style={{fontSize:"100px",zIndex:"9999"}}>
+      <div className="spinner"></div>
+      {/* <i class="fa-solid fa-infinity" style={{background:"transparent"}}></i> */}
+    </div>
+  )}
+
       <h1 className="title" style={{ textAlign: "center" }}>
         Something...<i className="fa-solid fa-infinity"></i>
       </h1>
 
       <form onSubmit={handleLoginSubmit} className="loginform" style={{minWidth:"330px"}}>
-        <h2 className="loginheading">Login</h2>
+        <h2 className="loginheading" >Login</h2>
         <input
           type="email"
           placeholder="Email..."
@@ -109,7 +125,7 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <div style={{ position: "relative" }}>
+        <div  className="passdiv" style={{ position: "relative" }}>
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password..."
@@ -145,6 +161,7 @@ const Login = () => {
             marginTop: "-30px",
             height: "200px",
           }}
+          className="loginbtns"
         >
           <button type="submit" className="signupbtn">
             Login
@@ -155,7 +172,7 @@ const Login = () => {
         </div>
 
         <button
-          style={{ border: "none", color: "blue", fontSize: "18px", textDecoration: "underline" }}
+          style={{ border: "none", color: "blue", fontSize: "20px", textDecoration: "underline" }}
           type="button"
           className="link-button"
           onClick={() => setIsForgotPasswordModalOpen(true)}

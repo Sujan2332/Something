@@ -336,12 +336,14 @@ let updateUserDetails = async (req, res) => {
         const oldPhotoKey = user.profilephoto.split('/').pop();
 
         const deleteParams = {
-          Bucket: process.env.AWS_S3_BUCKET_NAME,
+          Bucket: process.env.AWS_BUCKET_NAME,
           Key: oldPhotoKey,
         };
 
         try {
-          await s3Client.deleteObject(deleteParams).promise();
+          const command = new DeleteObjectCommand(deleteParams);
+  await s3Client.send(command);
+  console.log("Object deleted successfully");
         } catch (deleteErr) {
           console.error("Error deleting old profile photo from S3:", deleteErr);
         }

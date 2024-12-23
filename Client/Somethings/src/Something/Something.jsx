@@ -28,6 +28,7 @@ function ImageUploader() {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+  console.log(updatedUser)
   const openModal = () => setModalOpen(true);
   const closeModal = () => 
     {setModalOpen(false);
@@ -35,7 +36,12 @@ function ImageUploader() {
     }
   const navigate = useNavigate();
 
-  const backend = `https://something-backend.onrender.com`;
+  const backend = import.meta.env.VITE_REACT_BACKEND_URL;
+
+  const handleCardClick = (uniqueId) => {
+    // Navigate to the post page with the unique ID
+    navigate(`/post/${uniqueId}`);
+  };
 
   const handleImageClick = (image)=>{
     setImageOpen(true)
@@ -86,8 +92,9 @@ function ImageUploader() {
 
   // Handle profile photo fallback
   const handleProfilePhoto = () => {
-    return user && user.profilephoto ? `${user.profilephoto}` : `${backend}/${user.profilephoto}`;
+    return user.profilephoto ? `${user.profilephoto}` : `${backend}/${user.profilephoto}`;
   };
+  console.log("PROFILE:",handleProfilePhoto)
 
   // Handle input changes for editing
   const handleChange = (e) => {
@@ -377,7 +384,7 @@ const toggleHeart = async (uniqueId) => {
   }, [fetchUploads]);  
 
   const handleShareClick = (uploadId)=>{
-    const shareUrl = `${backend}/api/something/getPost/${uploadId}`;
+    const shareUrl = `/post/${uploadId}`;
     navigator.share({
       title:"Check This Out!",
       url: shareUrl,
@@ -419,52 +426,61 @@ const toggleHeart = async (uniqueId) => {
     }
 };  
 
-  const formatTextWithLinksAndHashtags = (text) => {
-    if (!text) return null;
-  
-    return text.split(/(\s+)/).map((part, index) => {
-      const hashtagRegex = /#\w+/;
-      const tagRegex = /@\w+/
-      const urlRegex = /(https?:\/\/[^\s]+)/;
-  
-      if (hashtagRegex.test(part)) {
-        // Render hashtags in blue and on a new line
-        return (
-          <span
-            key={index}
-            style={{ color: "blue", display: "block", marginBottom: "5px" }}
-          >
-            {part}
-          </span>
-        );
-      }else if(tagRegex.test(part)){
-        return (
-          <span key={index} style={{color:"blue",display:"block",marginBottom:"5px"}}>{part}</span>
-        )
-      } else if (urlRegex.test(part)) {
-        // Render links in blue and clickable
-        return (
-          <a
-            key={index}
-            href={part}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: "blue",
-              display: "block",
-              textDecoration: "none",
-              marginBottom: "5px",
-            }}
-          >
-            {part}
-          </a>
-        );
-      } else {
-        // Render regular text as it is
-        return <span key={index}>{part}</span>;
-      }
-    });
-  };
+const formatTextWithLinksAndHashtags = (text) => {
+  if (!text) return null;
+
+  return text.split(/\n/).map((line, lineIndex) => (
+    <div key={lineIndex} style={{ marginBottom: "10px" }}>
+      {line.split(/(\s+)/).map((part, index) => {
+        const hashtagRegex = /#\w+/;
+        const tagRegex = /@\w+/;
+        const urlRegex = /(https?:\/\/[^\s]+)/;
+
+        if (hashtagRegex.test(part)) {
+          // Render hashtags in blue
+          return (
+            <span
+              key={index}
+              style={{ color: "blue", marginRight: "5px" }}
+            >
+              {part}
+            </span>
+          );
+        } else if (tagRegex.test(part)) {
+          // Render mentions in blue
+          return (
+            <span
+              key={index}
+              style={{ color: "blue", marginRight: "5px" }}
+            >
+              {part}
+            </span>
+          );
+        } else if (urlRegex.test(part)) {
+          // Render links in blue and clickable
+          return (
+            <a
+              key={index}
+              href={part}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "blue",
+                textDecoration: "none",
+                marginRight: "5px",
+              }}
+            >
+              {part}
+            </a>
+          );
+        } else {
+          // Render regular text as it is
+          return <span key={index}>{part}</span>;
+        }
+      })}
+    </div>
+  ));
+};
 
   const openProfileModal = () => {
     setShowProfileModal(true); // Show profile modal
@@ -683,7 +699,7 @@ const toggleHeart = async (uniqueId) => {
                     </label>
                     </div>
                     {selectedFile && (
-                      <img src={URL.createObjectURL(selectedFile)} alt="" style={{width:"60px", height:"60px", borderRadius:"50%",border:"2px solid white",marginBottom:"1px",marginTop:"2px"}}/>
+                      <img src={URL.createObjectURL(selectedFile)} alt="" style={{width:"60px", height:"60px",objectFit:"cover", borderRadius:"50%",border:"2px solid white",marginBottom:"1px",marginTop:"2px"}}/>
                     )}
                     <br />
                   
@@ -774,7 +790,7 @@ const toggleHeart = async (uniqueId) => {
           Something...<i class="fa-solid fa-infinity"></i>
         </h1>
       </div>
-    <div className="User">
+    <div className="User" style={{cursor:"pointer"}}>
       {user && (
         <div className="user-profile"  onClick={openProfileModal}> {/* Click to open profile modal */}
           <img
@@ -877,8 +893,8 @@ const toggleHeart = async (uniqueId) => {
                 </form>
               </div>
             ) : (
-              <div style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center",gap:"20px",height:"70%",width:"80%",marginTop:"-50px"}}>
-                <img src={handleProfilePhoto()} width="100px" height="100px" alt="" style={{borderRadius:"50%",marginTop:"-20px",border:"2px solid white",marginBottom:"15px"}} />
+              <div className="editprofile" style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center",gap:"20px",height:"70%",width:"80%",marginTop:"-50px"}}>
+                <img src={handleProfilePhoto()} width="80px" height="80px" alt="" style={{borderRadius:"50%",marginTop:"-20px",border:"2px solid white",marginBottom:"15px"}} />
                 <h3> <span style={{textDecoration:"underline",marginRight:"10px"}}>Username: </span> <br />{updatedUser.username}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Email: </span><br /> {updatedUser.email}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Phone No.: </span><br /> {updatedUser.phone}</h3>
@@ -899,8 +915,8 @@ const toggleHeart = async (uniqueId) => {
     </div>
       
       </div>
-      <div className="MainSection">
-      <div className="upload">
+      <div className="MainSection" >
+      <div className="upload" >
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -933,7 +949,7 @@ const toggleHeart = async (uniqueId) => {
       </div>
       {selectedFile && (
           <div style={{ marginBottom: "10px" }}>
-            <p> Selected file: <br /> <strong>{selectedFile.name}</strong></p>
+            <p style={{width:"600px"}}> Selected file: <br /> <strong>{selectedFile.name}</strong></p>
             <p style={{marginBottom:"10px"}}>It is a <strong>{getFileCategory(selectedFile)}</strong> right? </p>
             {/* Render file based on type */}
             {getFileCategory(selectedFile) === 'image' && (
@@ -965,9 +981,7 @@ const toggleHeart = async (uniqueId) => {
         {uploads.length > 0 ? (
            [...uploads].reverse().map((upload, index) => (
           // shuffleArray(uploads).map((upload, index) => (
-            <div className="card" key={index}>
-              {/* <button onClick={()=>handleDelete(upload.uniqueId)}>Delete</button> */}
-              
+            <div className="card" key={index} onClick={() => handleCardClick(upload.uniqueId)} style={{cursor:"pointer"}}>              
               <div style={{display:"flex",alignItems:"end",justifyContent:"end",width:"100%",background:"transparent",marginBottom:"20px",marginTop:"10px"}}>
               <div style={{background:"transparent",display:"flex",alignItems:"center",justifyContent:"left",width:"80%",height:"50px"}}>
                 <img src={upload.profilePhoto ? `${upload.profilePhoto}` : `${backend}/${upload.profilePhoto}` } alt={upload.username} width="60px" height="60px" style={{borderRadius:"50%",margin:"none",border:"2px solid black",width:"60px",height:"60px"}}/>
@@ -986,20 +1000,19 @@ const toggleHeart = async (uniqueId) => {
               <select
   name="actionOptions"
   id="options"
-  style={{background:"black",color:"white",marginBottom:"10px",borderRadius:"15px",border:"1px solid white",padding:"5px",marginRight:"4px"}}
+  style={{cursor:"pointer",background:"black",color:"white",marginBottom:"10px",borderRadius:"15px",border:"1px solid white",padding:"5px",marginRight:"4px"}}
+  onClick={(e)=> {e.stopPropagation(); e.preventDefault() }}
   onChange={(e) => {
     if (e.target.value === "delete") {
       handleDelete(upload.uniqueId);
-    }
-    else if(e.target.value === "like"){
-      toggleHeart(upload.uniqueId)
-    }else if(e.target.value === "comment"){
-      handleCommentClick(upload.uniqueId)
-    }
-    else if(e.target.value === "share"){
-      handleShareClick(upload.uniqueId)
-    }else{
-      e.target.value=""
+    } else if (e.target.value === "like") {
+      toggleHeart(upload.uniqueId);
+    } else if (e.target.value === "comment") {
+      handleCommentClick(upload.uniqueId);
+    } else if (e.target.value === "share") {
+      handleShareClick(upload.uniqueId);
+    } else {
+      e.target.value = ""; // Reset the input if no valid option is selected
     }
   }}
 >
@@ -1025,8 +1038,8 @@ const toggleHeart = async (uniqueId) => {
   {formatTextWithLinksAndHashtags(upload.text)}
 </h4>
               {/* <h4 style={{width:"100%",maxWidth:"100%",height:"auto",padding:"10px",wordWrap:"break-word",borderRadius:"15px",padding:"10px"}}>{upload.text}</h4> */}
-              {upload.imageFile && <img src={upload.imageFile} style={{margin:"20px",borderRadius:"15px",width:"100%"}} alt={upload.imageFile} className="upload-image" onClick={() => handleImageClick(upload.imageFile)}/>}
-              {isImageOpen && image && (<div style={{position:"fixed", top:0,left:0,width:"100%",height:"100%",background:"rgba(0, 0, 0, 0.15)",display:"flex",justifyContent:"center",alignItems:"center",zIndex:1000}} onClick={handleModalClose}>
+              {upload.imageFile && <img src={upload.imageFile} style={{margin:"20px",borderRadius:"15px",width:"100%"}} alt={upload.imageFile} className="upload-image" onClick={(e) =>{ e.stopPropagation(); handleImageClick(upload.imageFile)}}/>}
+              {isImageOpen && image && (<div style={{position:"fixed", top:0,left:0,width:"100%",height:"100%",background:"rgba(0, 0, 0, 0.09)",display:"flex",justifyContent:"center",alignItems:"center",zIndex:1000}} onClick={(e) =>{ e.stopPropagation(); handleModalClose()}}>
                 <button onClick={handleDownload} style={{position:"absolute",top:30,right:"0",transform:"translate(-50%)",padding:"10px 20px",background:"white",color:"red",border:"none",borderRadius:"5px",cursor:"pointer",fontSize:"16px"}}><i class="fa-solid fa-download" style={{background:"none",color:"blue",fontSize:"20px",padding:"5px 0px"}}></i></button>
                 <div style={{position:"relative",borderRadius:"15px",display:"flex",justifyContent:"center",marginTop:"30px",alignItems:"center",padding:"10px",width:"85%",height:"85%",background:"none"}}>
                   <img src={image} alt="Full Screen View" style={{minWidth:"30%",maxWidth:"100%",maxHeight:"100%",borderRadius:"10px",boxShadow:"8px 6px 8px rgba(255, 255, 255, 0.2),2px 8px 20px rgba(255, 255, 255, 0.19)"}} />
@@ -1042,7 +1055,7 @@ const toggleHeart = async (uniqueId) => {
                 </div>
               )}
               {upload.documentFile && <div style={{width:"100%",padding:"10px",display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",fontSize:"20px",marginTop:"10px",borderRadius:"15px",paddingLeft:"10px",paddingRight:"10px",marginBottom:"10px"}}><h5><i class="fa-regular fa-file" style={{marginRight:"10px"}}></i>{upload.fileName || "Untitled Document"}</h5>  <a href={`/uploads/${upload.documentFile}`} download style={{textDecoration:"none",fontWeight:"600",color:"red",border:"1px solid white",padding:"5px",borderRadius:"15px",margin:"10px",background:"white"}}>Download</a></div> }
-              <div className="like-section" style={{width:"100%",background:"transparent",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:"10px",marginBottom:"10px"}}>
+              <div className="like-section" style={{width:"100%",background:"transparent",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:"10px",marginBottom:"10px"}} onClick={(e) => e.stopPropagation()}>
               <i onClick={() => toggleHeart(upload.uniqueId)} className="fa-solid fa-heart" style={{ cursor: 'pointer', fontSize: '24px', background: 'transparent', color: likesData[upload.uniqueId]?.isLiked? 'red' : 'gray'}}></i>
               <span style={{ background: 'transparent', marginRight: '80px', marginLeft: '10px' }}>
               {likesData[upload.uniqueId]?.likes} {/* Display total likes */}
