@@ -39,6 +39,8 @@ function ImageUploader() {
 
   // const backend = import.meta.env.VITE_REACT_BACKEND_URL;
   const backend = `https://something-backend.onrender.com`
+  // const backend = `http://localhost:5000`
+
 
   const handleCardClick = (uniqueId) => {
     // Navigate to the post page with the unique ID

@@ -23,6 +23,7 @@ const Post = () => {
 
   // const backend = import.meta.env.VITE_REACT_BACKEND_URL ;
   const backend = `https://something-backend.onrender.com`
+  // const backend = `http://localhost:5000`
 
   // Fetch post data on component load
   useEffect(() => {
