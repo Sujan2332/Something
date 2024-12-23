@@ -21,7 +21,8 @@ const Post = () => {
   const [updatedUser, setUpdatedUser] = useState(null); // For updating user details
   const [currentUploadId, setCurrentUploadId] = useState(uniqueId); // For managing the current upload ID
 
-  const backend = import.meta.env.VITE_REACT_BACKEND_URL ;
+  // const backend = import.meta.env.VITE_REACT_BACKEND_URL ;
+  const backend = `https://something-backend.onrender.com`
 
   // Fetch post data on component load
   useEffect(() => {
