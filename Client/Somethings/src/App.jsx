@@ -8,17 +8,17 @@ import "./App.css"
 
 const ProtectedRoute = ({ element }) => {
   const navigate = useNavigate();
-  
-  // Check if user is logged in by checking localStorage
+
   const isLoggedIn = localStorage.getItem('user');
 
+  // Redirect to login if not logged in
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/login");
+      navigate('/login');
     }
-  }, [isLoggedIn, navigate]); // Run effect on isLoggedIn change
+  }, [isLoggedIn, navigate]);
 
-  // If logged in, render the element
+  // Render the protected element if logged in
   return isLoggedIn ? element : null;
 };
 
