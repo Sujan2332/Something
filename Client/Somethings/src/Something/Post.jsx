@@ -26,7 +26,7 @@ const Post = () => {
 
   // Fetch post data on component load
   useEffect(() => {
-    fetch(`http://localhost:5000/api/something/getPost/${uniqueId}`)
+    fetch(`${backend}/api/something/getPost/${uniqueId}`)
       .then(response => response.json())
       .then(data => {
         setPost(data);
