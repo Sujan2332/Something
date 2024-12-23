@@ -1046,16 +1046,16 @@ const formatTextWithLinksAndHashtags = (text) => {
                   <img src={image} alt="Full Screen View" style={{minWidth:"30%",maxWidth:"100%",maxHeight:"100%",borderRadius:"10px",boxShadow:"8px 6px 8px rgba(255, 255, 255, 0.2),2px 8px 20px rgba(255, 255, 255, 0.19)"}} />
                 </div>
               </div> )}
-              {upload.videoFile && <video src={upload.videoFile} style={{margin:"20px",borderRadius:"15px", width:"100%"}}controls className="upload-video" />}
+              {upload.videoFile && <video src={upload.videoFile} style={{margin:"20px",borderRadius:"15px", width:"100%"}}controls className="upload-video"  onClick={(e)=>{e.stopPropagation()}}/>}
               {/* {upload.audioFile && <audio src={upload.audioFile} style={{margin:"20px",borderRadius:"15px"}} controls />} */}
               {upload.audioFile && (<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "20px", padding: "20px", borderRadius: "15px", background: "#1E1E1E",  boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",width: "100%", transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",}} onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}  >
-                <audio src={upload.audioFile} controls style={{width: "100%", borderRadius: "10px", background: "#333", padding: "5px",outline: "none",marginBottom: "15px", }} />
+                <audio onClick={(e)=>{e.stopPropagation()}} src={upload.audioFile} controls style={{width: "100%", borderRadius: "10px", background: "#333", padding: "5px",outline: "none",marginBottom: "15px", }} />
                 <div style={{ color: "#fff", fontSize: "16px", textAlign: "center", marginTop: "10px",borderRadius:"15px" ,padding:"10px"}}>
                 <strong >{upload.fileName || "Untitled Track"}</strong>
                 </div>
                 </div>
               )}
-              {upload.documentFile && <div style={{width:"100%",padding:"10px",display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",fontSize:"20px",marginTop:"10px",borderRadius:"15px",paddingLeft:"10px",paddingRight:"10px",marginBottom:"10px"}}><h5><i class="fa-regular fa-file" style={{marginRight:"10px"}}></i>{upload.fileName || "Untitled Document"}</h5>  <a href={`/uploads/${upload.documentFile}`} download style={{textDecoration:"none",fontWeight:"600",color:"red",border:"1px solid white",padding:"5px",borderRadius:"15px",margin:"10px",background:"white"}}>Download</a></div> }
+              {upload.documentFile && <div style={{width:"100%",padding:"10px",display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",fontSize:"20px",marginTop:"10px",borderRadius:"15px",paddingLeft:"10px",paddingRight:"10px",marginBottom:"10px"}}><h5><i class="fa-regular fa-file" style={{marginRight:"10px"}}></i>{upload.fileName || "Untitled Document"}</h5>  <a href={`/uploads/${upload.documentFile}`} download style={{textDecoration:"none",fontWeight:"600",color:"red",border:"1px solid white",padding:"5px",borderRadius:"15px",margin:"10px",background:"white"}} onClick={(e)=>{e.stopPropagation()}}>Download</a></div> }
               <div className="like-section" style={{width:"100%",background:"transparent",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:"10px",marginBottom:"10px"}} onClick={(e) => e.stopPropagation()}>
               <i onClick={() => toggleHeart(upload.uniqueId)} className="fa-solid fa-heart" style={{ cursor: 'pointer', fontSize: '24px', background: 'transparent', color: likesData[upload.uniqueId]?.isLiked? 'red' : 'gray'}}></i>
               <span style={{ background: 'transparent', marginRight: '80px', marginLeft: '10px' }}>
