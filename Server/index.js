@@ -28,6 +28,10 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
+
 // MongoDB connection
 const mongoURI = process.env.MONGODB_URI;
 if (!mongoURI) {
