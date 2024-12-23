@@ -385,14 +385,41 @@ const toggleHeart = async (uniqueId) => {
     }
   }, [fetchUploads]);  
 
-  const handleShareClick = (uploadId)=>{
-    const shareUrl = `/post/${uploadId}`;
-    navigator.share({
-      title:"Check This Out!",
-      image: logo,
+  const handleShareClick = (post) => {
+    const shareUrl = `/post/${post.uniqueId}`;
+    let mediaUrl = null;
+    let mediaType = null;
+  
+    if (post.imageFile) {
+      mediaUrl = post.imageFile;
+      mediaType = 'image';
+    } else if (post.videoFile) {
+      mediaUrl = post.videoFile;
+      mediaType = 'video';
+    } else if (post.audioFile) {
+      mediaUrl = post.audioFile;
+      mediaType = 'audio';
+    }
+  
+    const shareData = {
+      title: post.text,
+      text: `Shared from our app`,
       url: shareUrl,
-    }).catch((error)=>console.error("Error Sharing:",error))
-  }
+    };
+  
+    if (mediaUrl) {
+      shareData.files = [
+        {
+          name: post.fileName,
+          url: mediaUrl,
+          type: mediaType,
+        },
+      ];
+    }
+  
+    navigator.share(shareData)
+      .catch((error) => console.error("Error Sharing:", error));
+  };
 
   const handleDelete = async (uniqueId) => { 
     setIsLoading(true)
@@ -1066,7 +1093,7 @@ const formatTextWithLinksAndHashtags = (text) => {
                 <i class="fa-solid fa-repeat" style={{color:"rgb(7, 237, 3)",fontSize:"25px",background:"transparent"}}></i> <span style={{marginRight:"80px",marginLeft:"10px",background:"transparent"}}>0</span>
                 <i class="fa-solid fa-comment" onClick={()=>handleCommentClick(upload.uniqueId)} style={{ cursor: 'pointer', fontSize: '24px',background:"transparent"}}></i>
                 <span style={{background:"transparent",marginRight:"80px",marginLeft:"10px"}}>{upload.commentsno}</span>
-                <i class="fa-solid fa-share" onClick={()=>handleShareClick(upload.uniqueId)} style={{ cursor: 'pointer', fontSize: '24px',background:"transparent"}}></i>
+                <i class="fa-solid fa-share" onClick={()=>handleShareClick(upload)} style={{ cursor: 'pointer', fontSize: '24px',background:"transparent"}}></i>
               </div>
             </div>
           ))
