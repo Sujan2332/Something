@@ -17,7 +17,7 @@ const Signup = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);  // State for toggling password visibility
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);  // State for confirm password
   const navigate = useNavigate();
-  const backend = import.meta.env.VITE_REACT_BACKEND_URL;
+  const backend = `https://something-backend.onrender.com`;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
