@@ -327,6 +327,13 @@ let updateUserDetails = async (req, res) => {
 
     console.log("User document before update:", user);
 
+    if (updatedData.password) {
+      // Hash the new password before updating the user
+      const salt = await bcrypt.genSalt(10);
+      updatedData.password = await bcrypt.hash(updatedData.password, salt);
+      console.log("Password hashed successfully");
+    }
+
     // Handle profile photo update if a file is uploaded
     if (req.file) {
       console.log("Uploaded file details:", req.file);
