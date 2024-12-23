@@ -36,7 +36,8 @@ function ImageUploader() {
     }
   const navigate = useNavigate();
 
-  const backend = import.meta.env.VITE_REACT_BACKEND_URL;
+  // const backend = import.meta.env.VITE_REACT_BACKEND_URL;
+  const backend = `https://something-backend.onrender.com`
 
   const handleCardClick = (uniqueId) => {
     // Navigate to the post page with the unique ID
