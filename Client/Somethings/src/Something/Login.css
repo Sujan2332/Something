@@ -112,8 +112,7 @@ h2{
   }
   @media (max-width: 768px) {
     .login{
-        min-height:1275px;
-        border: 2px solid red;
+        min-height:1285px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;

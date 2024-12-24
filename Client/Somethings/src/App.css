@@ -76,7 +76,7 @@
     padding: 15px; /* Reduced padding */
     left: 24%;
     bottom: 3%;
-    animation: slide-in-bottom 0.3s forwards, fade-out 5s 0.5s forwards;
+    animation: slide-in-bottom 0.3s forwards, fade-out 5s forwards;
   }
 }
 

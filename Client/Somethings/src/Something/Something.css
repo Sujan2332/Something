@@ -12,7 +12,7 @@ body{
 
 .fa-infinity {
   animation: rotateAnimation 0.46s infinite ease-in-out;
-    background:black;
+  background:black;
 }
 
 @keyframes rotateAnimation {
