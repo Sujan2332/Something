@@ -273,48 +273,28 @@ const Post = () => {
           </h5>
         </div>
         <select
-  name="actionOptions"
-  id="options"
-  style={{
-    appearance: 'none',
-    WebkitAppearance: 'none',
-    MozAppearance: 'none',
-    backgroundColor: 'black',
-    color: 'white',
-    marginBottom: '10px',
-    borderRadius: '15px',
-    border: '1px solid white',
-    padding: '10px',
-    fontSize: '16px',
-    outline: 'none',
-    cursor: 'pointer',
-    width: 'auto',
-    maxWidth: '300px',
-    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23fff'/%3E%3C/svg%3E")`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'right 10px center',
-    backgroundSize: '10px',
-    transition: '0.3s ease-in-out',
-  }}
-  onChange={(e) => {
-    if (e.target.value === 'delete') {
-      handleDelete(post.uniqueId);
-    } else if (e.target.value === 'like') {
-      toggleHeart(post.uniqueId);
-    } else if (e.target.value === 'comment') {
-      handleCommentClick(post.uniqueId);
-    } else if (e.target.value === 'share') {
-      handleShareClick(post.uniqueId);
-    }
-  }}
->
-  <option value="">Options ♾️</option>
-  <option value="like">Like 💖</option>
-  <option value="retweet">ReShare 🔁</option>
-  <option value="comment">Comment 💬</option>
-  <option value="share">Share 📩</option>
-  <option value="delete">Delete 🗑️</option>
-</select>
+          name="actionOptions"
+          id="options"
+          style={{ background: 'black', color: 'white', marginBottom: '10px', borderRadius: '15px', border: '1px solid white', padding: '5px', marginRight: '4px' }}
+          onChange={(e) => {
+            if (e.target.value === 'delete') {
+              handleDelete(post.uniqueId);
+            } else if (e.target.value === 'like') {
+              toggleHeart(post.uniqueId);
+            } else if (e.target.value === 'comment') {
+              handleCommentClick(post.uniqueId);
+            } else if (e.target.value === 'share') {
+              handleShareClick(post.uniqueId);
+            }
+          }}
+        >
+          <option value="">Options ♾️</option>
+          <option value="like">Like 💖</option>
+          <option value="retweet">ReShare 🔁</option>
+          <option value="comment">Comment 💬</option>
+          <option value="share">Share 📩</option>
+          <option value="delete">Delete 🗑️</option>
+        </select>
       </div>
 
       <h4 style={{ width: '100%', maxWidth: '100%', height: 'auto', padding: '20px', wordWrap: 'break-word', borderRadius: '15px', textAlign: 'left' }}>
