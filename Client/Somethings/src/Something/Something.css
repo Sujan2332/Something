@@ -272,7 +272,7 @@ color: blue;
   width: 100%;
   min-width: 600px;
   /* padding: 10px; */
-  padding-bottom: 10px;
+  padding-bottom: 1px;
   padding-left: 20px;
   padding-right: 20px;
   height: auto;
@@ -285,8 +285,19 @@ color: blue;
   position: sticky; /* Makes the element stick */
   top: 0; /* Sticks the element to the top of the viewport */
   z-index: 1000; /* Ensures it stays above other content */
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+  /* visibility: visible; */
 }
 
+.heading.visible {
+  opacity: 1; /* Make it visible when scrolling up */
+  /* visibility: visible; */
+}
+.heading.hidden {
+  opacity: 0; /* Make it invisible when scrolling down */
+  /* visibility: hidden; */
+}
 .HeadTitle{
   display: flex;
   flex-direction: column;
@@ -604,7 +615,7 @@ body {
 
 /* Feeds Section Styling */
 .feeds {
-  width: 90%;
+  width: 100%;
   /* border: 2px solid red; */
   min-width: 500px;
   max-width: 600px;
@@ -624,6 +635,7 @@ body {
   /* border: 2px solid red; */
   align-items: center;
   width: 100%;
+  /* border: 2px solid red; */
 }
 
 .card h3 {
@@ -650,6 +662,13 @@ body {
 }
 img{
   object-fit: cover;
+}
+.like-section{
+  /* border: 2px solid red; */
+  padding:20px 0px;
+  background: black;
+  width: auto;
+  border-radius: 15px;
 }
 /* Responsive Design */
 @media (max-width: 768px) {

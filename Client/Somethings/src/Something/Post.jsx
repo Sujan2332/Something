@@ -258,7 +258,7 @@ const Post = () => {
       <nav style={{padding:"30px",width:"100%"}}>
       <h1 style={{fontSize:"35px",textDecoration:"underline",marginLeft:"20px"}}><i class="fa-solid fa-arrow-left" style={{marginRight:"20px",cursor:"pointer"}} onClick={()=>{navigate("/")}}></i> Post</h1>
       </nav>
-    <div className="card" >
+    <div className="card1" >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'transparent', marginBottom: '20px', marginTop: '10px'}}>
         <div style={{ background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'left', width: '80%', height: '50px'}}>
           <img src={post.profilePhoto ? `${post.profilePhoto}` : `${backend}/${post.profilePhoto}`} alt={post.username} width="60px" height="60px" style={{ borderRadius: '50%', margin: 'none', border: '2px solid black', width: '60px', height: '60px' }} />
@@ -354,7 +354,7 @@ const Post = () => {
           rows="4"
           style={{ width: '100%', padding: '10px', borderRadius: '15px', border: '1px solid #ccc', fontSize: '14px', marginBottom: '10px' }}
         />
-        <button onClick={handleCommentSubmit} style={{ background: 'blue', color: 'white', padding: '10px 15px', borderRadius: '15px', cursor: 'pointer' }}>
+        <button onClick={handleCommentSubmit} style={{ background: 'blue', color: 'white', padding: '10px 15px', borderRadius: '15px', cursor: 'pointer',border:"1px solid black" }}>
         
         <h4 style={{background:"none"}}>Submit Comment <i class="fa-solid fa-paper-plane" style={{background:"none",marginLeft:"10px"}}></i></h4>
         </button>

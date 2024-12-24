@@ -25,6 +25,43 @@ function ImageUploader() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isImageOpen, setImageOpen] = useState(false)
   const [image, setImage] = useState(null)
+  const [scrollingUp, setScrollingUp] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [isVisible, setIsVisible] = useState(true); // Track visibility based on interaction
+
+  // Handle scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      // Use scrollY for modern browsers, fallback to scrollTop for older browsers
+      const currentScrollPos = window.scrollY || document.documentElement.scrollTop;
+
+      if (currentScrollPos > prevScrollPos) {
+        // Scrolling down - fade out
+        setScrollingUp(false);
+      } else {
+        // Scrolling up - fade in
+        setScrollingUp(true);
+      }
+
+      // Update previous scroll position
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    // Attach scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos]);
+
+  // Handle visibility for user interaction
+  useEffect(() => {
+    if (scrollingUp) {
+      setIsVisible(true); // Heading is visible when scrolling up
+    } else {
+      setIsVisible(false); // Heading hides when scrolling down
+    }
+  }, [scrollingUp]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -601,8 +638,7 @@ const formatTextWithLinksAndHashtags = (text) => {
   </div>
 )}
   </div>
-      <div className="heading" >
-                {/* *************************************88 */}
+  <div className={`heading ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="header-container">
       {/* Menu Button */}
       <div className="menu-button-container" style={{marginTop:"-3px"}}>
@@ -1061,7 +1097,7 @@ const formatTextWithLinksAndHashtags = (text) => {
                 </div>
               )}
               {upload.documentFile && <div style={{width:"100%",padding:"10px",display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",fontSize:"20px",marginTop:"10px",borderRadius:"15px",paddingLeft:"10px",paddingRight:"10px",marginBottom:"10px"}}><h5><i class="fa-regular fa-file" style={{marginRight:"10px"}}></i>{upload.fileName || "Untitled Document"}</h5>  <a href={`/uploads/${upload.documentFile}`} download style={{textDecoration:"none",fontWeight:"600",color:"red",border:"1px solid white",padding:"5px",borderRadius:"15px",margin:"10px",background:"white"}} onClick={(e)=>{e.stopPropagation()}}>Download</a></div> }
-              <div className="like-section" style={{width:"100%",background:"transparent",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:"10px",marginBottom:"10px"}} onClick={(e) => e.stopPropagation()}>
+              <div className="like-section" style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:"10px",marginBottom:"10px"}} onClick={(e) => e.stopPropagation()}>
               <i onClick={() => toggleHeart(upload.uniqueId)} className="fa-solid fa-heart" style={{ cursor: 'pointer', fontSize: '24px', background: 'transparent', color: likesData[upload.uniqueId]?.isLiked? 'red' : 'gray'}}></i>
               <span style={{ background: 'transparent', marginRight: '80px', marginLeft: '10px' }}>
               {likesData[upload.uniqueId]?.likes} {/* Display total likes */}
