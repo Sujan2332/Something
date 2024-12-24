@@ -1,40 +1,98 @@
-/* App.css */
-
-/* Define light and dark mode variables */
-:root {
-    --background-light: white;
-    --background-dark: black;
-    --text-light: black;
-    --text-dark: white;
-    --button-background-light: black;
-    --button-background-dark: white;
-    --button-text-light: white;
-    --button-text-dark: red;
+/* Main Alert Box */
+.custom-alert {
+    position: fixed;
+    /* top: 85%; */
+    bottom: 5%;
+    left: 3%;
+    /* transform: translate(-50%, -50%); */
+    width: 380px;
+    background: black; /* Light yellow background */
+    background: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1000;
+    padding: 5px;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    animation: slide-in 0.4s forwards,fade-out 5s forwards;
 }
 
-/* Default theme: Light Mode */
-body {
-    background-color: var(--background-light);
-    color: var(--text-light);
-    transition: background-color 0.3s, color 0.3s;
+@keyframes slide-in {
+  0% {
+    left: -400px; /* Start off-screen to the left */
+  }
+  100% {
+    left: 3%; /* Move into view */
+  }
 }
 
-button {
-    background-color: var(--button-background-light);
-    color: var(--button-text-light);
-    border: none;
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  .custom-alert:hover{
+    transform: scale(1.05);
+    /* box-shadow: 5px 5px 10px rgb(255, 0, 0); */
+  }
+  /* Alert Message Text */
+  .custom-alert p {
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+    color: black;
+    margin: 5px;
+    background: none;
+    text-decoration: underline;
+  }
+  /* OK Button */
+  .custom-alert button {
     padding: 10px 20px;
+    border-radius: 50px;
+    border: 2px solid white;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    font-size: 14px;
+    background: none;
+    font-weight: bold;
+    transition:  0.3s ease-in-out;
+  }
+  .custom-alert button i{
+    /* border: 2px solid red; */
+    font-size: 30px;
+    background: none;
+    color: red;
+  }
+  
+  /* Responsive Adjustments for Mobile Devices */
+@media (max-width: 768px) {
+  .custom-alert {
+    font-size: 14px; /* Slightly smaller text */
+    padding: 15px; /* Reduced padding */
+    left: 24%;
+    bottom: 3%;
+    animation: slide-in-bottom 0.3s forwards, fade-out 5s 0.5s forwards;
+  }
 }
 
-/* Dark Mode */
-body.dark-mode {
-    background-color: var(--background-dark);
-    color: var(--text-dark);
+@keyframes slide-in-bottom {
+  0% {
+    bottom: -200px; /* Start off-screen at the bottom */
+  }
+  100% {
+    bottom: 3%; /* Move into view */
+  }
 }
 
-button.dark-mode {
-    background-color: var(--button-background-dark);
-    color: var(--button-text-dark);
+@media (max-width: 480px) {
+  .custom-alert {
+    width: 90%; /* Use 90% of the screen width on very small devices */
+    font-size: 12px; /* Even smaller text */
+    padding: 10px; /* Further reduced padding */
+  }
 }
