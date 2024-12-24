@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import "./Post.css"
 
 const Post = () => {
   const { uniqueId } = useParams();
@@ -247,7 +248,7 @@ const Post = () => {
   }
 
   return (
-    <div style={{display:'flex',flexDirection:"column",justifyContent:"space-between",alignItems:"center"}}>
+    <div className="Post" style={{display:'flex',flexDirection:"column",justifyContent:"space-between",alignItems:"center"}}>
        {isLoading && (
     <div className="loading-overlay" style={{fontSize:"100px",zIndex:"9999"}}>
       <div className="spinner"></div>
@@ -257,7 +258,7 @@ const Post = () => {
       <nav style={{padding:"30px",width:"100%"}}>
       <h1 style={{fontSize:"35px",textDecoration:"underline",marginLeft:"20px"}}><i class="fa-solid fa-arrow-left" style={{marginRight:"20px",cursor:"pointer"}} onClick={()=>{navigate("/")}}></i> Post</h1>
       </nav>
-    <div className="card" style={{width:"70%"}}>
+    <div className="card" >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'transparent', marginBottom: '20px', marginTop: '10px'}}>
         <div style={{ background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'left', width: '80%', height: '50px'}}>
           <img src={post.profilePhoto ? `${post.profilePhoto}` : `${backend}/${post.profilePhoto}`} alt={post.username} width="60px" height="60px" style={{ borderRadius: '50%', margin: 'none', border: '2px solid black', width: '60px', height: '60px' }} />
@@ -333,7 +334,7 @@ const Post = () => {
         </div>
       )}
 
-<div className="like-section" style={{width:"100%",background:"transparent",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:"10px",marginBottom:"10px" }} onClick={(e)=>{e.stopPropagation()}}>
+<div className="like-section" style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginTop:"10px",marginBottom:"10px" }} onClick={(e)=>{e.stopPropagation()}}>
               <i onClick={() => toggleHeart(post.uniqueId)} className="fa-solid fa-heart" style={{ cursor: 'pointer', fontSize: '24px', background: 'transparent', color: likesData[post.uniqueId]?.isLiked? 'red' : 'gray'}}></i>
               <span style={{ background: 'transparent', marginRight: '80px', marginLeft: '10px' }}>
               {likesData[post.uniqueId]?.likes} {/* Display total likes */}

@@ -1,0 +1,16 @@
+.card{
+    width: 70%;
+}
+.like-section{
+    /* border: 2px solid red; */
+    padding:20px 0px;
+    background-color: black;
+    width: auto;
+    border-radius: 50px;
+}
+@media (max-width: 768px) {
+   .card{
+    width: 90%;
+   }
+  }
+  
