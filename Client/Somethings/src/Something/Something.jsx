@@ -565,19 +565,19 @@ const formatTextWithLinksAndHashtags = (text) => {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isMenuVisible && !event.target.closest('.menu-button-container')) {
-        setIsMenuVisible(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (isMenuVisible && !event.target.closest(".header-container")) {
+  //       setIsMenuVisible(false);
+  //     }
+  //   };
 
-    document.addEventListener('click', handleClickOutside);
+  //   document.addEventListener('click', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [isMenuVisible]);
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, [isMenuVisible]);
   return (
     <div className="something" style={{ textAlign: "center", position: "relative" }}>
      {isLoading && (
