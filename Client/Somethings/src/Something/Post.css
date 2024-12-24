@@ -38,6 +38,10 @@
     object-fit: cover;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+  .comment-solo{
+    /* background: linear-gradient(285deg,rgb(111, 188, 218),white); */
+    border: 1px solid #ccc;
+  }
 @media (max-width: 768px) {
    .card1{
     width: 90%;

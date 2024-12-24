@@ -203,7 +203,7 @@ const Post = () => {
         })}
       </div>
     ));
-  };  
+  };
 
   const handleModalClose = () => {
     setIsImageOpen(false);
