@@ -288,7 +288,7 @@ const Post = () => {
     fontSize: '16px',
     outline: 'none',
     cursor: 'pointer',
-    // width: '100%',
+    width: 'auto',
     maxWidth: '300px',
     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23fff'/%3E%3C/svg%3E")`,
     backgroundRepeat: 'no-repeat',
