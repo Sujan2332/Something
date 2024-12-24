@@ -284,7 +284,7 @@ color: blue;
   flex-wrap: wrap;
   position: sticky; /* Makes the element stick */
   top: 0; /* Sticks the element to the top of the viewport */
-  z-index: 9999; /* Ensures it stays above other content */
+  z-index: 999; /* Ensures it stays above other content */
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
   /* visibility: visible; */
