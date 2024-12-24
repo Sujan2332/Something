@@ -106,7 +106,7 @@ const Post = () => {
   };
 
   const handleShareClick = (uploadId) => {
-    const shareUrl = `/post/${uploadId}`;
+    const shareUrl = `/#/post/${uploadId}`;
     navigator.share({
       title: "Check This Out!",
       url: shareUrl,
