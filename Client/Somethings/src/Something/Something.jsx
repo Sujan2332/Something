@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState,useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 import "./Something.css";
@@ -28,6 +28,18 @@ function ImageUploader() {
   const [scrollingUp, setScrollingUp] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [isVisible, setIsVisible] = useState(true); // Track visibility based on interaction
+  const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+  const mediaRefs = useRef([])
+  const handlePlay = (index, type) => {
+    // Pause all media except the one being played
+    mediaRefs.current.forEach((media, i) => {
+      if (media && i !== index) {
+        media.pause();
+      }
+    });
+
+    setCurrentlyPlaying({ index, type }); // Track which media is playing
+  };
 
   // Handle scroll event
   useEffect(() => {
@@ -1087,10 +1099,10 @@ const formatTextWithLinksAndHashtags = (text) => {
                   <img src={image} alt="Full Screen View" style={{minWidth:"30%",maxWidth:"100%",maxHeight:"100%",borderRadius:"10px",boxShadow:"8px 6px 8px rgba(255, 255, 255, 0.2),2px 8px 20px rgba(255, 255, 255, 0.19)"}} />
                 </div>
               </div> )}
-              {upload.videoFile && <video src={upload.videoFile} style={{margin:"20px",borderRadius:"15px", width:"100%"}}controls className="upload-video"  onClick={(e)=>{e.stopPropagation()}}/>}
+              {upload.videoFile && <video ref={(el) => (mediaRefs.current[index] = el)} onPlay={() => handlePlay(index, "video")} src={upload.videoFile} style={{margin:"20px",borderRadius:"15px", width:"100%"}}controls className="upload-video"  onClick={(e)=>{e.stopPropagation()}}/>}
               {/* {upload.audioFile && <audio src={upload.audioFile} style={{margin:"20px",borderRadius:"15px"}} controls />} */}
               {upload.audioFile && (<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "20px", padding: "20px", borderRadius: "15px", background: "#1E1E1E",  boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",width: "100%", transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",}} onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}  >
-                <audio onClick={(e)=>{e.stopPropagation()}} src={upload.audioFile} controls style={{width: "100%", borderRadius: "10px", background: "#333", padding: "5px",outline: "none",marginBottom: "15px", }} />
+                <audio  ref={(el) => (mediaRefs.current[index] = el)} onPlay={() => handlePlay(index, "audio")} onClick={(e)=>{e.stopPropagation()}} src={upload.audioFile} controls style={{width: "100%", borderRadius: "10px", background: "#333", padding: "5px",outline: "none",marginBottom: "15px", }} />
                 <div style={{ color: "#fff", fontSize: "16px", textAlign: "center", marginTop: "10px",borderRadius:"15px" ,padding:"10px"}}>
                 <strong >{upload.fileName || "Untitled Track"}</strong>
                 </div>
