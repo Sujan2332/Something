@@ -276,7 +276,10 @@ const Post = () => {
   name="actionOptions"
   id="options"
   style={{
-    background: 'black',
+    appearance: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    backgroundColor: 'black',
     color: 'white',
     marginBottom: '10px',
     borderRadius: '15px',
@@ -284,13 +287,14 @@ const Post = () => {
     padding: '10px',
     fontSize: '16px',
     outline: 'none',
-    appearance: 'none', // Removes default browser styling
-    WebkitAppearance: 'none', // Ensures compatibility with Safari
-    MozAppearance: 'none', // Compatibility with Firefox
     cursor: 'pointer',
-    width: '100%', // Make it full width for mobile devices
-    maxWidth: '300px', // Add a max width to avoid stretching on larger screens
-    transition: '0.3s ease-in-out', // Smooth hover effect
+    // width: '100%',
+    maxWidth: '300px',
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23fff'/%3E%3C/svg%3E")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right 10px center',
+    backgroundSize: '10px',
+    transition: '0.3s ease-in-out',
   }}
   onChange={(e) => {
     if (e.target.value === 'delete') {
