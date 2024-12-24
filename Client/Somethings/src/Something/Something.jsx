@@ -496,20 +496,17 @@ const formatTextWithLinksAndHashtags = (text) => {
 
   return text.split(/\n/).map((line, lineIndex) => (
     <div key={lineIndex} style={{ marginBottom: "10px" }}>
-      {line.split(/(\s+)/).map((part, index) => {
-        const hashtagRegex = /#\w+/;
-        const tagRegex = /@\w+/;
+      {line.split(/(#\w+)/).map((part, index) => {
+        const hashtagRegex = /^#\w+/;
+        const tagRegex = /^@\w+/;
         const urlRegex = /(https?:\/\/[^\s]+)/;
 
         if (hashtagRegex.test(part)) {
-          // Render hashtags in blue
+          // Render hashtags in blue and add a line break after
           return (
-            <span
-              key={index}
-              style={{ color: "blue", marginRight: "5px" }}
-            >
+            <div key={index} style={{ color: "blue", marginBottom: "5px" }}>
               {part}
-            </span>
+            </div>
           );
         } else if (tagRegex.test(part)) {
           // Render mentions in blue
