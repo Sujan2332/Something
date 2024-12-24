@@ -564,7 +564,20 @@ const formatTextWithLinksAndHashtags = (text) => {
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };
-  
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuVisible && !event.target.closest('.menu-button-container')) {
+        setIsMenuVisible(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMenuVisible]);
   return (
     <div className="something" style={{ textAlign: "center", position: "relative" }}>
      {isLoading && (
@@ -579,7 +592,7 @@ const formatTextWithLinksAndHashtags = (text) => {
 {/* Modal content */}
 {isModalOpen && (
   <div className="modal">
-    <div className="modal-content" style={{zIndex:"10000",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",height:"680px",width:"500px",marginBottom:"-160px",padding:"-100px"}}>
+    <div className="modal-content" style={{position:"fixed",zIndex:"10000",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",height:"680px",width:"500px",padding:"-100px"}}>
       <div className="upload" style={{flexDirection:"column",minHeight:"100%",width:"100%",padding:"-100px",marginBottom:"-390px",border:"none"}}>
       <button className="close-btn" onClick={closeModal} style={{background:"white",color:"black",borderRadius:"50%",padding:"13px 25px",fontSize:"18px"}}>X</button>
         <textarea
