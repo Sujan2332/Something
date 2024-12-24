@@ -273,28 +273,44 @@ const Post = () => {
           </h5>
         </div>
         <select
-          name="actionOptions"
-          id="options"
-          style={{ background: 'black', color: 'white', marginBottom: '10px', borderRadius: '15px', border: '1px solid white', padding: '5px', marginRight: '4px' }}
-          onChange={(e) => {
-            if (e.target.value === 'delete') {
-              handleDelete(post.uniqueId);
-            } else if (e.target.value === 'like') {
-              toggleHeart(post.uniqueId);
-            } else if (e.target.value === 'comment') {
-              handleCommentClick(post.uniqueId);
-            } else if (e.target.value === 'share') {
-              handleShareClick(post.uniqueId);
-            }
-          }}
-        >
-          <option value="">Options ♾️</option>
-          <option value="like">Like 💖</option>
-          <option value="retweet">ReShare 🔁</option>
-          <option value="comment">Comment 💬</option>
-          <option value="share">Share 📩</option>
-          <option value="delete">Delete 🗑️</option>
-        </select>
+  name="actionOptions"
+  id="options"
+  style={{
+    background: 'black',
+    color: 'white',
+    marginBottom: '10px',
+    borderRadius: '15px',
+    border: '1px solid white',
+    padding: '10px',
+    fontSize: '16px',
+    outline: 'none',
+    appearance: 'none', // Removes default browser styling
+    WebkitAppearance: 'none', // Ensures compatibility with Safari
+    MozAppearance: 'none', // Compatibility with Firefox
+    cursor: 'pointer',
+    width: '100%', // Make it full width for mobile devices
+    maxWidth: '300px', // Add a max width to avoid stretching on larger screens
+    transition: '0.3s ease-in-out', // Smooth hover effect
+  }}
+  onChange={(e) => {
+    if (e.target.value === 'delete') {
+      handleDelete(post.uniqueId);
+    } else if (e.target.value === 'like') {
+      toggleHeart(post.uniqueId);
+    } else if (e.target.value === 'comment') {
+      handleCommentClick(post.uniqueId);
+    } else if (e.target.value === 'share') {
+      handleShareClick(post.uniqueId);
+    }
+  }}
+>
+  <option value="">Options ♾️</option>
+  <option value="like">Like 💖</option>
+  <option value="retweet">ReShare 🔁</option>
+  <option value="comment">Comment 💬</option>
+  <option value="share">Share 📩</option>
+  <option value="delete">Delete 🗑️</option>
+</select>
       </div>
 
       <h4 style={{ width: '100%', maxWidth: '100%', height: 'auto', padding: '20px', wordWrap: 'break-word', borderRadius: '15px', textAlign: 'left' }}>
