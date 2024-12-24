@@ -58,7 +58,9 @@ input{
     background: white;
     color: red;
 }
-
+.custom-file-label{
+  color: black;
+}
 .signup img{
 width: 150px;
 /* height: 220px; */

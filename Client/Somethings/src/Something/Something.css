@@ -442,6 +442,7 @@ color: blue;
     border-left: 2px solid grey;
     border-right: 2px solid grey;
 }
+
 textarea{
     color: white;
     border: none;
@@ -598,7 +599,8 @@ body {
 
 .upload button {
   display: block;
-  background-color: #007bff;
+  /* background-color: #007bff; */
+  background: none;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -653,7 +655,9 @@ body {
   object-fit: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+.editprofile h3{
+  color: white;
+}
 /* Feeds Empty State */
 .feeds p {
   text-align: center;
@@ -670,6 +674,19 @@ img{
   width: auto;
   border-radius: 15px;
 }
+
+.audio{
+  background: #1E1E1E;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4)
+}
+option{
+  font-weight: 900;
+  background: black;
+  color: white;
+}
+option:hover{
+  background: blue;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .upload {
@@ -677,6 +694,9 @@ img{
   }
   .feeds {
     width: 95%;
+  }
+  option:active{
+    background:blue;
   }
   .HeadTitle{
     margin-left: 40px;

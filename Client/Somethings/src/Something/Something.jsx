@@ -2,7 +2,6 @@ import React, { useState,useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 import "./Something.css";
-import logo from "../assets/logo.png"
 // import "./style.css"
 import axios from "axios";
 function ImageUploader() {
@@ -166,34 +165,45 @@ function ImageUploader() {
   // Handle submit to update user data
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
+    
     // Create a FormData object to send both the user data and the file (profile photo)
     const formData = new FormData();
-    const profilephoto = user.profilephoto
-    console.log(profilephoto)
+    const profilephoto = user.profilephoto;
+    console.log(profilephoto);
+
     // Append the updated user fields (e.g., username, email, etc.)
     for (const key in updatedUser) {
-      formData.append(key, updatedUser[key]);
+        formData.append(key, updatedUser[key]);
     }
-  console.log("UPDATED PRILFE : ",updatedUser.profilePhoto)
+    console.log("UPDATED PROFILE:", updatedUser.profilePhoto);
+
     // Append the profile photo if a new one is selected
-    if (updatedUser.profilephoto) {  // Assuming `profilePhoto` holds the file from the input
-      formData.append('profilephoto', profilephoto);
+    if (updatedUser.profilephoto) {
+        formData.append('profilephoto', profilephoto);
     }
-  
+
     // Send a PATCH request to update user data, including the file
     axios.patch(`${backend}/api/users/update/${userId}`, formData)
-      .then(response => {
-        console.log("Profile updated successfully", response);
-        setUser(updatedUser); // Update the user state with the new data
-        setIsEditing(false); // Exit edit mode
-        setIsLoading(false)
-        window.location.reload()
-      })
-      .catch(error => {
-        console.error("Error updating profile:", error);
-      });
-  }; 
+        .then(response => {
+            console.log("Profile updated successfully", response);
+            setUser(updatedUser); // Update the user state with the new data
+            setIsEditing(false); // Exit edit mode
+            setIsLoading(false);
+            alert("Profile Updated Successfully");
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error("Error updating profile:", error);
+            setIsLoading(false);
+            alert(`Error updating profile: ${
+              error.response?.data?.details || 
+              error.response?.data?.message || 
+              error.message || 
+              "An unexpected error occurred. Please try again."
+          }`);
+        });
+};
 
 const toggleHeart = async (uniqueId) => {
   if (!userId) {
@@ -588,7 +598,7 @@ const formatTextWithLinksAndHashtags = (text) => {
   )}
 
   <div className="uploadModal" > 
-        <button className="modal-btn" onClick={openModal} style={{background:"none"}}><i class="fa-solid fa-paper-plane" style={{fontSize:"25px",border:"px solid white",padding:"20px",borderRadius:"50%"}}></i></button>
+        <button className="modal-btn" onClick={openModal} style={{background:"none"}}><i class="fa-solid fa-paper-plane" style={{fontSize:"25px",padding:"20px",borderRadius:"50%"}}></i></button>
 {/* Modal content */}
 {isModalOpen && (
   <div className="modal">
@@ -620,11 +630,11 @@ const formatTextWithLinksAndHashtags = (text) => {
           onChange={handleFileChange}
           style={{ marginBottom:"-10px",position:"absolute"}}
         />
-        <label htmlFor="file-input" className="custom-file-label" style={{ fontSize: "20px" }}>
+        <label htmlFor="file-input" className="custom-file-label" style={{ fontSize: "20px",background:"none" }}>
           <i className="fa-solid fa-paperclip" style={{fontSize:"28px"}}></i> {/* Upload Icon */}
         </label>
-        <button className="uploadbtn" style={{ background: "black", color: "black", fontWeight: "600" }} onClick={handleUpload}>
-        <i class="fa-solid fa-paper-plane" style={{fontSize:"25px",background:'none',border:"1px solid white",padding:"15px",borderRadius:"50%"}}></i>
+        <button className="uploadbtn" style={{  color: "black", fontWeight: "600",border:"none" }} onClick={handleUpload}>
+        <i class="fa-solid fa-paper-plane" style={{fontSize:"25px",border:"2px solid white",padding:"15px",borderRadius:"50%"}}></i>
         </button>
         </div>
         <div style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center"}}>
@@ -776,7 +786,7 @@ const formatTextWithLinksAndHashtags = (text) => {
                 </form>
               </div>
             ) : (
-              <div style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center",gap:"20px",height:"70%",width:"80%",marginTop:"-50px"}}>
+              <div className="editprofile" style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center",gap:"20px",height:"70%",width:"80%",marginTop:"-50px"}}>
                 <img src={handleProfilePhoto()} width="100px" height="100px" alt="" style={{borderRadius:"50%",border:"2px solid white"}} />
                 <h3> <span style={{textDecoration:"underline",marginRight:"10px"}}>Username: </span> <br />{updatedUser.username}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Email: </span><br /> {updatedUser.email}</h3>
@@ -853,7 +863,7 @@ const formatTextWithLinksAndHashtags = (text) => {
     </div>
     <div className="Navbar">
     <div className="HeadTitle">
-        <h1 style={{color:"white"}}>
+        <h1>
           Something...<i class="fa-solid fa-infinity"></i>
         </h1>
       </div>
@@ -1010,8 +1020,8 @@ const formatTextWithLinksAndHashtags = (text) => {
         <label htmlFor="file-input" className="custom-file-label" style={{ fontSize: "20px" }}>
           <i className="fa-solid fa-paperclip" style={{fontSize:"28px"}}></i> {/* Upload Icon */}
         </label>
-        <button className="uploadbtn" style={{ background: "black", color: "black", fontWeight: "600" }} onClick={handleUpload}>
-        <i class="fa-solid fa-paper-plane" style={{fontSize:"25px",background:'none',border:"1px solid white",padding:"20px",borderRadius:"50%"}}></i>
+        <button className="uploadbtn" style={{ fontWeight: "600" }} onClick={handleUpload}>
+        <i class="fa-solid fa-paper-plane" style={{fontSize:"25px",border:"1px solid white",padding:"20px",borderRadius:"50%"}}></i>
         </button>
       </div>
       {selectedFile && (
@@ -1067,7 +1077,7 @@ const formatTextWithLinksAndHashtags = (text) => {
               <select
   name="actionOptions"
   id="options"
-  style={{cursor:"pointer",background:"black",color:"white",marginBottom:"10px",borderRadius:"15px",border:"1px solid white",padding:"5px",marginRight:"4px"}}
+  style={{cursor:"pointer",marginBottom:"10px",borderRadius:"15px",border:"1px solid white",padding:"5px",marginRight:"4px"}}
   onClick={(e)=> {e.stopPropagation(); e.preventDefault() }}
   onChange={(e) => {
     if (e.target.value === "delete") {
@@ -1114,8 +1124,8 @@ const formatTextWithLinksAndHashtags = (text) => {
               </div> )}
               {upload.videoFile && <video ref={(el) => (mediaRefs.current[index] = el)} onPlay={() => handlePlay(index, "video")} src={upload.videoFile} style={{margin:"20px",borderRadius:"15px", width:"100%"}}controls className="upload-video"  onClick={(e)=>{e.stopPropagation()}}/>}
               {/* {upload.audioFile && <audio src={upload.audioFile} style={{margin:"20px",borderRadius:"15px"}} controls />} */}
-              {upload.audioFile && (<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "20px", padding: "20px", borderRadius: "15px", background: "#1E1E1E",  boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",width: "100%", transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",}} onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}  >
-                <audio  ref={(el) => (mediaRefs.current[index] = el)} onPlay={() => handlePlay(index, "audio")} onClick={(e)=>{e.stopPropagation()}} src={upload.audioFile} controls style={{width: "100%", borderRadius: "10px", background: "#333", padding: "5px",outline: "none",marginBottom: "15px", }} />
+              {upload.audioFile && (<div className="audio" style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "20px", padding: "20px", borderRadius: "15px",width: "100%", transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",}} onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}  >
+                <audio  ref={(el) => (mediaRefs.current[index] = el)} onPlay={() => handlePlay(index, "audio")} onClick={(e)=>{e.stopPropagation()}} src={upload.audioFile} controls style={{width: "100%", borderRadius: "10px", padding: "5px",outline: "none",marginBottom: "15px", }} />
                 <div style={{ color: "#fff", fontSize: "16px", textAlign: "center", marginTop: "10px",borderRadius:"15px" ,padding:"10px"}}>
                 <strong >{upload.fileName || "Untitled Track"}</strong>
                 </div>

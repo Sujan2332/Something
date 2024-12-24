@@ -56,10 +56,10 @@ const upload = multer({
       }
     }
   }),
-  limits: { fileSize: 5 * 1024 * 1024 }, // Optional: limit file size to 5MB
+  limits: { fileSize: 6 * 1024 * 1024 }, // Optional: limit file size to 5MB
   fileFilter: (req, file, cb) => {
     // Optional: restrict to specific file types (e.g., JPEG and PNG images)
-    const allowedMimeTypes = ["image/jpeg", "image/png","image/jpg","image/jfif,image/gif"];
+    const allowedMimeTypes = ["image/jpeg", "image/png","image/jpg","image/jfif","image/gif"];
     if (!allowedMimeTypes.includes(file.mimetype)) {
       return cb(new Error("Invalid file type. Only JPEG, JPG, GIF, JFIF and PNG are allowed."));
     }

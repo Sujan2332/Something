@@ -4,6 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "./Post.css"
+// import "./PostLight.css"
 
 const Post = () => {
   const { uniqueId } = useParams();
@@ -275,7 +276,7 @@ const Post = () => {
         <select
           name="actionOptions"
           id="options"
-          style={{ background: 'black', color: 'white', marginBottom: '10px', borderRadius: '15px', border: '1px solid white', padding: '5px', marginRight: '4px' }}
+          style={{fontWeight:"900", marginBottom: '10px', borderRadius: '15px', border: '1px solid white', padding: '5px', marginRight: '4px' }}
           onChange={(e) => {
             if (e.target.value === 'delete') {
               handleDelete(post.uniqueId);
@@ -344,7 +345,7 @@ const Post = () => {
                 <span style={{background:"transparent",marginRight:"80px",marginLeft:"10px"}}>{post.commentsno}</span>
                 <i class="fa-solid fa-share" onClick={()=>handleShareClick(post.uniqueId)} style={{ cursor: 'pointer', fontSize: '24px',background:"transparent"}}></i>
               </div>
-      <div style={{ marginTop: '20px',width:"100%",padding:"20px",borderRadius:"50px" }}>
+      <div className='commentsection' style={{ marginTop: '20px',width:"100%",padding:"20px",borderRadius:"50px" }}>
       <h1 style={{marginLeft:"10px",textDecoration:"underline"}}>Comments :</h1>
           <div style={{ padding: '10px'}}>
         <textarea
@@ -356,20 +357,20 @@ const Post = () => {
         />
         <button onClick={handleCommentSubmit} style={{ background: 'blue', color: 'white', padding: '10px 15px', borderRadius: '15px', cursor: 'pointer',border:"1px solid black" }}>
         
-        <h4 style={{background:"none"}}>Submit Comment <i class="fa-solid fa-paper-plane" style={{background:"none",marginLeft:"10px"}}></i></h4>
+        <h4 style={{background:"none"}}>Submit Comment <i class="fa-solid fa-paper-plane" style={{background:"none",border:"none",marginLeft:"10px"}}></i></h4>
         </button>
       </div>
       {comments.length > 0 && (
         <div style={{ marginTop: '0px',width:"100%",padding:"20px",borderRadius:"50px" }}>
           <div style={{ borderTop: '1px solid #ccc', paddingTop: '20px',marginBottom:"10px" }}>
             {comments.map((comment, index) => (
-              <div key={index} style={{ marginBottom:"10px",display: 'flex', alignItems: 'flex-start',flexDirection:"column",border:"1px solid white",borderRadius:"50px",paddingLeft:"20px" }}>
+              <div className='comment-solo' key={index} style={{ marginBottom:"10px",display: 'flex', alignItems: 'flex-start',flexDirection:"column",borderRadius:"50px",paddingLeft:"20px" }}>
                 <div style={{display:"flex",flexDirection:"row",alignItems:"center",padding:"0px 10px",marginTop:"15px"}}>
                 <img src={comment.profilePhoto} alt={comment.username} style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px',border:"1px solid white",marginLeft:"1px",margin:"0px 10px" }} />
-                <h4 style={{textDecoration:"underline"}}>{comment.username}</h4>
+                <h4 style={{textDecoration:"underline",background:"none"}}>{comment.username}</h4>
                 </div>
                 <div style={{marginLeft :"80px",marginBottom:"10px"}}>
-        <h4 style={{marginRight:"60px",textAlign:"left"}}>{formatTextWithLinksAndHashtags(comment.text)}</h4>
+        <h4 style={{marginRight:"60px",textAlign:"left",background:"none"}}>{formatTextWithLinksAndHashtags(comment.text)}</h4>
                 </div>
               </div>
             ))}

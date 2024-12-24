@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
+// import "./LoginLight.css"
 
 const API_BASE_URL = `https://something-backend.onrender.com`; // Temporary hardcoded value
+// const API_BASE_URL = `http://localhost:5000`; // Temporary hardcoded value
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +21,6 @@ const Login = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
-
   const togglePasswordVisibility = (setter) => setter((prev) => !prev);
 
   const handleLoginSubmit = async (e) => {
@@ -199,8 +200,6 @@ const Login = () => {
                   style={{
                     borderRadius: "50px",
                     fontWeight: "600",
-                    background: "none",
-                    color: "white",
                   }}
                 >
                   X
@@ -282,8 +281,6 @@ const Login = () => {
                   style={{
                     borderRadius: "50px",
                     fontWeight: "600",
-                    background: "none",
-                    color: "white",
                   }}
                 >
                   X

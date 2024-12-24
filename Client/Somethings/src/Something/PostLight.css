@@ -2,12 +2,12 @@
 .like-section{
     /* border: 2px solid red; */
     padding:20px 0px;
-    background-color: black;
+    background-color: white;
     width: auto;
     border-radius: 15px;
 }
 .card1 {
-    background:linear-gradient(285deg,#16181c,#16181c);
+    background:linear-gradient(285deg,rgb(117, 188, 230),white);
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
@@ -29,6 +29,10 @@
     margin-bottom: 10px;
     text-align: center;
     color: #ffffff;
+    background: white;
+  }
+  .card1 h4{
+    background: white;
   }
   
   .card1 img {
@@ -37,6 +41,16 @@
     height: auto;
     object-fit: cover;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .commentsection{
+    background: white;
+  }
+  button h4{
+    color: white;
+  }
+  .comment-solo{
+    background: linear-gradient(285deg,rgb(111, 188, 218),white);
+    border: 1px solid #ccc;
   }
 @media (max-width: 768px) {
    .card1{

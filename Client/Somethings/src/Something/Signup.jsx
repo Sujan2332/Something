@@ -177,7 +177,7 @@ const Signup = () => {
           name="profilePhoto"
           onChange={handleFileChange} 
         />
-        <label htmlFor="file-input" className="custom-file-label" style={{width:"100%",marginTop:"-20px",marginBottom:"10px"}}>
+        <label htmlFor="file-input" className="custom-file-label" style={{width:"100%",marginTop:"-20px",fontWeight:"500",marginBottom:"10px"}}>
           Upload Profile Photo
           <i className="fa-solid fa-user" style={{ marginLeft: "10px" }}></i> {/* Upload Icon */}
         </label>

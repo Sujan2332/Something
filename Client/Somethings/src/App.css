@@ -74,7 +74,8 @@
   .custom-alert {
     font-size: 14px; /* Slightly smaller text */
     padding: 15px; /* Reduced padding */
-    left: 24%;
+    left: 10%;
+    width: 80%;
     bottom: 3%;
     animation: slide-in-bottom 0.3s forwards, fade-out 5s forwards;
   }
