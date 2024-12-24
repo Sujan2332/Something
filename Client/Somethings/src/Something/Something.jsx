@@ -388,7 +388,7 @@ const toggleHeart = async (uniqueId) => {
   }, [fetchUploads]);  
 
   const handleShareClick = (uploadId) => {
-    const shareUrl = `/post/${uploadId}`;
+    const shareUrl = `/#/post/${uploadId}`;
     navigator.share({
       title: "Check This Out!",
       image: `https://somethingsposts.s3.us-east-1.amazonaws.com/uploads/svgviewer-output%20(1).png`,
