@@ -190,6 +190,7 @@ function ImageUploader() {
             setIsLoading(false);
             alert("Profile Updated Successfully");
             window.location.reload();
+          
         })
         .catch(error => {
             console.error("Error updating profile:", error);
