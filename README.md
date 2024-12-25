@@ -1,4 +1,4 @@
-# *Something♾️ - ## Transform. Connect. Beyond Borders.*
+# *Something♾️ - Transform. Connect. Beyond Borders.*
 ## *Socialize Beyond Boundaries: Transforming Connections and Redefining the Social Media Experience*
 
 ### *Welcome to Something♾️, a dynamic social media platform designed to connect people, share memories, and bring the world together with seamless interactions. Whether you’re sharing photos, videos, or thoughts, Something♾️ lets you do it all while providing an intuitive and engaging user experience.*
