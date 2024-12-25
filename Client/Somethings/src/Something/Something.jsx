@@ -600,7 +600,7 @@ const formatTextWithLinksAndHashtags = (text) => {
   )}
 
   <div className="uploadModal" > 
-        <button className="modal-btn" onClick={openModal} style={{background:"none"}}><i class="fa-solid fa-paper-plane" style={{fontSize:"25px",padding:"20px",borderRadius:"50%",border:"2px solid white"}}></i></button>
+        <button className="modal-btn" onClick={openModal} style={{background:"none"}}><i class="fa-solid fa-paper-plane" style={{fontSize:"25px",padding:"20px",borderRadius:"50%"}}></i></button>
 {/* Modal content */}
 {isModalOpen && (
   <div className="modal">

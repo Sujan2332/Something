@@ -264,6 +264,10 @@ color: blue;
   cursor: pointer;
 }
 
+.fa-paper-plane{
+  border: 2px solid white;
+}
+
 .modal-btn:hover {
   /* background-color: #2980b9; */
 }
