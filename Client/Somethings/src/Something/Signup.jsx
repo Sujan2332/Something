@@ -16,7 +16,7 @@ const Signup = () => {
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);  // State for confirm password
   const navigate = useNavigate();
   const backend = `https://something-backend.onrender.com`;
-
+// const backend = `http://localhost:5000`
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

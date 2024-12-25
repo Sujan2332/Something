@@ -136,6 +136,7 @@ const loginUser = async (req, res) => {
 
 // Forgot Password Function
 let forgotPassword = async (req, res) => {
+  console.log("Foprogt password request recieved")
   try {
     const { email } = req.body;
 

@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000; // Default to 5000 if not specified
 const app = express();
 
 // Enable CORS
-app.use(cors({ origin: "https://something-frontend.onrender.com" }));
+app.use(cors());
 
 // Body parsing middleware
 app.use(express.json()); // Built-in middleware for parsing JSON
@@ -26,10 +26,6 @@ app.use("/api/something", somethingRoutes);
 // Default route
 app.get("/", (req, res) => {
   res.send("Hello World");
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
 // MongoDB connection
