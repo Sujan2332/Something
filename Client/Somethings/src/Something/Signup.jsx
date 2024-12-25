@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./Signup.css";
-
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -104,7 +102,7 @@ const Signup = () => {
       {/* <i class="fa-solid fa-infinity" style={{background:"transparent"}}></i> */}
     </div>
   )}
-      <h1 className="title">Something...<i className="fa-solid fa-infinity"></i></h1>
+      <h1 className="title" style={{marginTop:"-50px"}}>Something...<i className="fa-solid fa-infinity"></i></h1>
       <form onSubmit={handleSubmit} className="signup-form" style={{minWidth:"330px"}}>
         <h2 style={{marginTop:"-20px"}}>Signup</h2>
         <input

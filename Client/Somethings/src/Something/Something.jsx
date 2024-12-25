@@ -1,8 +1,6 @@
 import React, { useState,useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
-import "./Something.css";
-// import "./style.css"
 import axios from "axios";
 function ImageUploader() {
   const [text, setText] = useState("");
@@ -595,11 +593,11 @@ const formatTextWithLinksAndHashtags = (text) => {
   )}
 
   <div className="uploadModal" > 
-        <button className="modal-btn" onClick={openModal} style={{background:"none"}}><i class="fa-solid fa-paper-plane" style={{fontSize:"25px",padding:"20px",borderRadius:"50%"}}></i></button>
+        <button className="modal-btn" onClick={openModal} style={{background:"none"}}><i class="fa-solid fa-paper-plane" style={{fontSize:"25px",padding:"20px",borderRadius:"50%",border:"2px solid white"}}></i></button>
 {/* Modal content */}
 {isModalOpen && (
   <div className="modal">
-    <div className="modal-content" style={{position:"fixed",zIndex:"10000",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",height:"680px",width:"500px",padding:"-100px"}}>
+    <div className="modal-content" style={{position:"fixed",zIndex:"10000",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",height:"680px",width:"420px",padding:"-100px"}}>
       <div className="upload" style={{flexDirection:"column",minHeight:"100%",width:"100%",padding:"-100px",marginBottom:"-390px",border:"none"}}>
       <button className="close-btn" onClick={closeModal} style={{background:"white",color:"black",borderRadius:"50%",padding:"13px 25px",fontSize:"18px"}}>X</button>
         <textarea
@@ -630,8 +628,8 @@ const formatTextWithLinksAndHashtags = (text) => {
         <label htmlFor="file-input" className="custom-file-label" style={{ fontSize: "20px",background:"none" }}>
           <i className="fa-solid fa-paperclip" style={{fontSize:"28px"}}></i> {/* Upload Icon */}
         </label>
-        <button className="uploadbtn" style={{  color: "black", fontWeight: "600",border:"none" }} onClick={handleUpload}>
-        <i class="fa-solid fa-paper-plane" style={{fontSize:"25px",border:"2px solid white",padding:"15px",borderRadius:"50%"}}></i>
+        <button className="uploadbtn" style={{  color: "black", fontWeight: "600",border:"none",background:"none" }} onClick={handleUpload}>
+        <i class="fa-solid fa-paper-plane" style={{fontSize:"25px",border:"2px solid white",padding:"25px",borderRadius:"50%"}}></i>
         </button>
         </div>
         <div style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center"}}>
@@ -670,7 +668,7 @@ const formatTextWithLinksAndHashtags = (text) => {
   </div>
 )}
   </div>
-  <div className={`heading ${isVisible ? 'visible' : 'hidden'}`}>
+  <div className={`heading ${isVisible ? 'visible' : 'hidden'}`} style={{marginTop:"-60px"}}>
       <div className="header-container">
       {/* Menu Button */}
       <div className="menu-button-container" style={{marginTop:"-3px"}}>
@@ -679,7 +677,7 @@ const formatTextWithLinksAndHashtags = (text) => {
         </button>
       </div>
       {/* Sidebar Menu */}
-      <div className={`sidebar-menu ${isMenuVisible ? "visible" : ""}`}>
+      <div className={`sidebar-menu ${isMenuVisible ? "visible" : ""}`} >
         <div className="User" style={{marginTop:"30px"}}>
       {user && (
         <div className="userprofile"  onClick={openProfileModal}> {/* Click to open profile modal */}
@@ -691,7 +689,6 @@ const formatTextWithLinksAndHashtags = (text) => {
               width: "80px",
               height: "80px",
               borderRadius: "50%",
-              border: "3px solid white",
               marginBottom: "5px",
             }}
           />
@@ -784,7 +781,7 @@ const formatTextWithLinksAndHashtags = (text) => {
               </div>
             ) : (
               <div className="editprofile" style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center",gap:"20px",height:"70%",width:"80%",marginTop:"-50px"}}>
-                <img src={handleProfilePhoto()} width="100px" height="100px" alt="" style={{borderRadius:"50%",border:"2px solid white"}} />
+                <img src={handleProfilePhoto()} width="100px" height="100px" alt="" style={{borderRadius:"50%"}} />
                 <h3> <span style={{textDecoration:"underline",marginRight:"10px"}}>Username: </span> <br />{updatedUser.username}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Email: </span><br /> {updatedUser.email}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Phone No.: </span><br /> {updatedUser.phone}</h3>
@@ -875,7 +872,6 @@ const formatTextWithLinksAndHashtags = (text) => {
               width: "80px",
               height: "80px",
               borderRadius: "50%",
-              border: "3px solid white",
               marginBottom: "-10px",
             }}
           />
@@ -990,7 +986,8 @@ const formatTextWithLinksAndHashtags = (text) => {
       
       </div>
       <div className="MainSection" >
-      <div className="upload" >
+            
+            <div className="upload" style={{}} >
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -1017,7 +1014,7 @@ const formatTextWithLinksAndHashtags = (text) => {
         <label htmlFor="file-input" className="custom-file-label" style={{ fontSize: "20px" }}>
           <i className="fa-solid fa-paperclip" style={{fontSize:"28px"}}></i> {/* Upload Icon */}
         </label>
-        <button className="uploadbtn" style={{ fontWeight: "600" }} onClick={handleUpload}>
+        <button className="uploadbtn" style={{ fontWeight: "600",background:"none" }} onClick={handleUpload}>
         <i class="fa-solid fa-paper-plane" style={{fontSize:"25px",border:"1px solid white",padding:"20px",borderRadius:"50%"}}></i>
         </button>
       </div>

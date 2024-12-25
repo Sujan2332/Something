@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Login.css";
-// import "./LoginLight.css"
 
 const API_BASE_URL = `https://something-backend.onrender.com`; // Temporary hardcoded value
 // const API_BASE_URL = `http://localhost:5000`; // Temporary hardcoded value
@@ -109,7 +107,7 @@ const Login = () => {
     </div>
   )}
 
-      <h1 className="title" style={{ textAlign: "center" }}>
+      <h1 className="title" style={{ textAlign: "center",marginTop:"-60px" }}>
         Something...<i className="fa-solid fa-infinity"></i>
       </h1>
 
@@ -156,6 +154,7 @@ const Login = () => {
             flexDirection: "column",
             justifyContent: "space-evenly",
             padding: "10px",
+            width:"auto",
             marginTop: "-30px",
             height: "200px",
           }}
@@ -165,12 +164,12 @@ const Login = () => {
             Login
           </button>
           <button type="button" onClick={() => navigate("/signup")} className="signupbtn">
-            Sign Up ?
+            SignUp ?
           </button>
         </div>
 
         <button
-          style={{ border: "none", color: "blue", fontSize: "20px", textDecoration: "underline" }}
+          style={{ background:"none",border: "none", color: "blue", fontSize: "20px", textDecoration: "underline" }}
           type="button"
           className="link-button"
           onClick={() => setIsForgotPasswordModalOpen(true)}

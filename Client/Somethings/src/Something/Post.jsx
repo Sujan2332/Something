@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import "./Post.css"
-// import "./PostLight.css"
+
 
 const Post = () => {
   const { uniqueId } = useParams();
@@ -249,7 +248,7 @@ const Post = () => {
   // Early return in case post is still loading
   if (!post) {
     return (
-        <div className="loading-overlay" style={{fontSize:"100px",zIndex:"9999",background:"black"}}>
+        <div className="loading-overlay" style={{fontSize:"100px",zIndex:"9999"}}>
         <div className="spinner"></div>
       </div>
     )
@@ -258,12 +257,12 @@ const Post = () => {
   return (
     <div className="Post" style={{display:'flex',flexDirection:"column",justifyContent:"space-between",alignItems:"center"}}>
        {isLoading && (
-    <div className="loading-overlay" style={{fontSize:"100px",zIndex:"9999"}}>
+    <div className="loading-overlay" style={{background:"none",fontSize:"100px",zIndex:"9999"}}>
       <div className="spinner"></div>
       {/* <i class="fa-solid fa-infinity" style={{background:"transparent"}}></i> */}
     </div>
   )}
-      <nav style={{padding:"30px",width:"100%"}}>
+      <nav style={{padding:"30px",width:"100%",marginTop:"-30px"}}>
       <h1 style={{fontSize:"35px",textDecoration:"underline",marginLeft:"20px"}}><i class="fa-solid fa-arrow-left" style={{marginRight:"20px",cursor:"pointer"}} onClick={()=>{navigate("/")}}></i> Post</h1>
       </nav>
     <div className="card1" >

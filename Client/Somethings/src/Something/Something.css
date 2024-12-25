@@ -6,6 +6,10 @@
     margin: 0;
     padding: 0;
 }
+html {
+  background-color: #000; /* Or your dark theme color */
+  color: #fff; /* Optional: Text color for dark themes */
+}
 body{
   background: linear-gradient(180deg,black,black);
 }
@@ -167,6 +171,8 @@ body{
 /* Sidebar Menu */
 .sidebar-menu {
   border: 1px solid white;
+  border-radius: 15px;
+  border-top-left-radius: 0px;
   display: none;
   flex-direction: column;
   position: fixed;
@@ -562,7 +568,7 @@ body {
   width: 90%;
   max-width: 550px;
   margin: 20px auto;
-  margin-top: -380px;
+  margin-top: -370px;
 
   /* margin-left:460px; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -589,7 +595,7 @@ body {
 .upload .custom-file-label {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
+  /* background-color: #007bff; */
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -687,6 +693,9 @@ option{
 option:hover{
   background: blue;
 }
+.user-profile img{
+  border: 3px solid white;
+  }
 /* Responsive Design */
 @media (max-width: 768px) {
   .upload {

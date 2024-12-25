@@ -9,7 +9,10 @@
 body{
 background: linear-gradient(180deg,rgb(255, 255, 255),rgb(252, 252, 252));
 }
-
+html,body {
+  background-color: white; /* Or your dark theme color */
+  color: #fff; /* Optional: Text color for dark themes */
+}
 .fa-infinity {
 animation: rotateAnimation 0.46s infinite ease-in-out;
 background:none;
@@ -168,6 +171,8 @@ background: white;
 /* Sidebar Menu */
 .sidebar-menu {
 border: 1px solid black;
+border-radius: 15px;
+border-top-left-radius: 0px;
 display: none;
 flex-direction: column;
 position: fixed;
@@ -176,7 +181,7 @@ left: 0px;
 height: 600px;
 width: 250px;
 gap: 25px;
-background: linear-gradient(285deg, rgb(165, 206, 229), white);
+background: linear-gradient(285deg, white 10%, white 90%);
 padding: 20px;
 z-index: 1000;
 transition: transform 0.3s ease-in-out;
@@ -356,7 +361,8 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: rgba(0, 0, 0, 0.5);
+background: rgba(255, 255, 255, 0.689);
+/* background: white; */
 display: flex;
 align-items: center;
 justify-content: center;
@@ -368,7 +374,7 @@ width: 50px;
 height: 50px;
 background:transparent;
 border: 5px solid #f3f3f3;
-border-top: 5px solid #3498db;
+border-top: 5px solid blue;
 border-radius: 50%;
 animation: spin 1s linear infinite;
 }
@@ -545,7 +551,7 @@ padding: 20px;
 width: 90%;
 max-width: 550px;
 margin: 20px auto;
-margin-top: -380px;
+margin-top: -370px;
 
 /* margin-left:460px; */
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -572,7 +578,7 @@ display: none;
 .upload .custom-file-label {
 display: inline-block;
 padding: 10px 20px;
-background-color: none;
+background: none;
 color: #fff;
 border-radius: 5px;
 cursor: pointer;
@@ -659,7 +665,7 @@ width: auto;
 border-radius: 15px;
 }
 .uploadbtn i{
-background: blue;
+background: none;
 /* border: 2px solid red; */
 color: white;
 }
@@ -681,6 +687,16 @@ audio{
   background: blue;
   color: white;
   border: 2px solid black;
+}
+.editprofile img{
+border: 2px solid black;
+}
+.user-profile img{
+border: 3px solid black;
+}
+.heading{
+  top: 0px;
+  margin-top: 0px;
 }
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -723,7 +739,6 @@ margin-top: -30px;
   border-bottom: 1px solid white;
 }
 }
-
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 

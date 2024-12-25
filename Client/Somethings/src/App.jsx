@@ -32,6 +32,61 @@ const ProtectedRoute = ({ element }) => {
 const App = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [isDarkTheme,setIsDarkTheme] =useState(() => {
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme === 'dark';
+  });
+
+  useEffect(()=>{
+    document.body.classList.add('loading');
+    const loadStyles = (theme)=>{
+      const head = document.head
+      Array.from(document.querySelectorAll("link[data-them")).forEach((link)=>
+        head.removeChild(link)
+      )
+      const stylesheets =
+      theme === "dark"
+      ? [
+        "../src/Something/Post.css",
+        "../src/Something/Login.css",
+        "../src/Something/Signup.css",
+        "../src/Something/Something.css",
+      ] :
+      [
+        "../src/Something/PostLight.css",
+        "../src/Something/LoginLight.css",
+        "../src/Something/SignupLight.css",
+        "../src/Something/style.css",
+      ]
+
+      stylesheets.forEach((href)=>{
+        const link = document.createElement("link")
+        link.rel = "stylesheet"
+        link.href=href
+        link.setAttribute("data-theme",theme)
+        head.appendChild(link)
+      })
+    }
+
+    const theme = isDarkTheme ? 'dark' : 'light';
+    loadStyles(theme);
+
+    // Save the theme to localStorage
+    localStorage.setItem('theme', theme);
+
+    const timer = setTimeout(() => {
+      document.body.classList.remove('loading');
+    }, 500); // Same time as the transition duration
+
+
+    return ()=>{
+      clearTimeout(timer);
+      Array.from(document.querySelectorAll("link[data-theme]")).forEach((link)=>
+      document.head.removeChild(link)
+      )
+    }
+  },[isDarkTheme])
 
   useEffect(() => {
     // Override the default alert globally
@@ -51,8 +106,15 @@ const App = () => {
     setShowAlert(false);
     setAlertMessage("");
   };
+  
 
   return (
+    <div>
+      <span className={isDarkTheme ? "dark-theme":"light-theme"}>
+        <button onClick={()=>setIsDarkTheme((prev)=>!prev)} className='theme-toggle-btn'>
+        {isDarkTheme ? <i class="fa-solid fa-moon"></i> :<i class="fa-solid fa-sun"></i>}
+        </button>
+      </span>
     <Router>
       <div className="App">
         <Routes>
@@ -66,6 +128,8 @@ const App = () => {
         {showAlert && <CustomAlert message={alertMessage} onClose={closeAlert} />}
       </div>
     </Router>
+    </div>
+    
   );
 };
 

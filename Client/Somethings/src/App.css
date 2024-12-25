@@ -1,99 +1,113 @@
-/* Main Alert Box */
-.custom-alert {
-    position: fixed;
-    /* top: 85%; */
-    bottom: 5%;
-    left: 3%;
-    /* transform: translate(-50%, -50%); */
-    width: 380px;
-    background: black; /* Light yellow background */
-    background: white;
-    border: 2px solid white;
-    border-radius: 8px;
-    text-align: center;
-    z-index: 1000;
-    padding: 5px;
-    transition: 0.3s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    animation: slide-in 0.4s forwards,fade-out 5s forwards;
+
+/* Common theme styles */
+.dark-theme,
+.light-theme {
+  padding: 20px;
+  border-radius: 10px;
+  width: auto;
 }
 
-@keyframes slide-in {
-  0% {
-    left: -400px; /* Start off-screen to the left */
-  }
-  100% {
-    left: 3%; /* Move into view */
-  }
+/* Theme toggle button */
+.theme-toggle-btn {
+  position: fixed;
+  border: 2px solid red;
+  padding: 10px 20px;
+  font-size: 25px;
+  /* background-color: #333; */
+  background: none;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1000;
+  bottom: 30px; /* Default for larger screens (desktop) */
+  left: 30px; /* Default for larger screens (desktop) */
 }
 
-  @keyframes fade-out {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  .custom-alert:hover{
-    transform: scale(1.05);
-    /* box-shadow: 5px 5px 10px rgb(255, 0, 0); */
-  }
-  /* Alert Message Text */
-  .custom-alert p {
-    font-size: 22px;
-    font-weight: 600;
-    color: white;
-    color: black;
-    margin: 5px;
-    background: none;
-    text-decoration: underline;
-  }
-  /* OK Button */
-  .custom-alert button {
-    padding: 10px 20px;
-    border-radius: 50px;
-    border: 2px solid white;
-    cursor: pointer;
-    font-size: 14px;
-    background: none;
-    font-weight: bold;
-    transition:  0.3s ease-in-out;
-  }
-  .custom-alert button i{
-    /* border: 2px solid red; */
-    font-size: 30px;
-    background: none;
-    color: red;
-  }
-  
-  /* Responsive Adjustments for Mobile Devices */
+
+/* Button hover effect */
+.theme-toggle-btn:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  /* background-color: #555; Lighter dark background */
+}
+
+.fa-sun{
+  background: blue;
+  color:white;
+  border-radius: 50%;
+  bottom: 10px;
+  right: 10px;
+  padding: 20px;
+  transition: 0.3s ease-in-out;
+}
+.fa-sun:hover{
+  background: black;
+  border: 1px solid grey;
+  color: white;
+}
+.fa-moon{
+  padding: 20px 23px;
+  border-radius: 50%;
+  bottom: 10px;
+  right: 10px;
+  border: 2px solid white;
+}
+.fa-moon:hover{
+  background: white;
+  border: 1px solid grey;
+  color: blue;
+}
+
+/* For mobile devices (smaller screens) */
 @media (max-width: 768px) {
-  .custom-alert {
-    font-size: 14px; /* Slightly smaller text */
-    padding: 15px; /* Reduced padding */
-    left: 10%;
-    width: 80%;
-    bottom: 3%;
-    animation: slide-in-bottom 0.3s forwards, fade-out 5s forwards;
+  .theme-toggle-btn {
+    top: 13px;  /* Adjust as needed for mobile */
+    border: none; /* Optionally remove border for a cleaner mobile look */
+    padding: 0px;
+    width: 50px;
+    height: 50px;
+    left: 650px; /* Adjust as needed for mobile */
+  }
+  .fa-sun,.fa-moon{
+    font-size: 25px;
+    padding: 10px;
+  }
+  .fa-moon{
+    padding: 10px 14px;
   }
 }
 
-@keyframes slide-in-bottom {
-  0% {
-    bottom: -200px; /* Start off-screen at the bottom */
-  }
-  100% {
-    bottom: 3%; /* Move into view */
-  }
-}
-
+/* For even smaller screens (portrait phones) */
 @media (max-width: 480px) {
-  .custom-alert {
-    width: 90%; /* Use 90% of the screen width on very small devices */
-    font-size: 12px; /* Even smaller text */
-    padding: 10px; /* Further reduced padding */
+  .theme-toggle-btn {
+    top: 10px;  /* Adjust positioning */
+    right: 10px; /* Adjust positioning */
+    padding: 8px 15px; /* Reduce padding for small screens */
   }
+}
+
+/* Add a fade effect to the body or root element */
+body {
+  transition: background-color 0.05s ease, color 0.05s ease;
+  opacity: 1;
+  /* transition: opacity 0.1s ease; */
+}
+
+/* When loading the theme, set the opacity to 0 to prevent the FOUC */
+body.loading {
+  opacity: 0;
+}
+
+/* Light Theme styles */
+body.light-theme {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Dark Theme styles */
+body.dark-theme {
+  background-color: #333;
+  color: #fff;
 }
