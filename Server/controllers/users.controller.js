@@ -135,13 +135,20 @@ const loginUser = async (req, res) => {
 };
 
 // Forgot Password Function
-let forgotPassword = async (req, res) => {
-  console.log("Foprogt password request recieved")
+const forgotPassword = async (req, res) => {
+  console.log("Forgot password request received");
+
   try {
     const { email } = req.body;
 
+    // Check for email and validate its format
     if (!email) {
       return res.status(400).json({ error: true, message: "Email is required" });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: true, message: "Invalid email format" });
     }
 
     const user = await User.findOne({ email });
@@ -156,11 +163,12 @@ let forgotPassword = async (req, res) => {
     user.tokenExpiry = tokenExpiry;
     await user.save();
 
+    // Nodemailer transporter configuration
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_USER || `saisujan.s03@gmail.com`,
+        pass: process.env.EMAIL_PASS || `tnoo esmm rkdv qfeq`,
       },
     });
 
@@ -169,21 +177,21 @@ let forgotPassword = async (req, res) => {
       to: email,
       subject: "Password Reset Request",
       html: `
-      <div style="background-color: black;text-align:center;height:400px;">
-        <div style="font-family: Arial, sans-serif;background-color: black; color: white; font-size: 16px; color: #333;font-style: italic;margin:30px;padding:20px">
-          <div style="background-color: black; color: white; text-align: center;">
-            <h1>Something...</h1>
+        <div style="background-color: black;text-align:center;height:400px;">
+          <div style="font-family: Arial, sans-serif;background-color: black; color: white; font-size: 16px; color: #333;font-style: italic;margin:30px;padding:20px">
+            <div style="background-color: black; color: white; text-align: center;">
+              <h1>Something...</h1>
+            </div>
+            <h2 style="font-style: italic;color: white;">Password Reset Request</h2>
+            <p style="color: white;">You requested a password reset. Use the token below to reset your password:</p>
+            <h1><strong style="font-size: 18px; color: white;text-decoration:underline;">${resetToken}</strong></h1>
+            <p style="color: white;">This token will expire in 15 minutes.</p>
           </div>
-          <h2 style="font-style: italic;color: white; ">Password Reset Request</h2>
-          <p style="color: white; ">You requested a password reset. Use the token below to reset your password:</p>
-          <h1><strong style="font-size: 18px; color: white;text-decoration :underline ;font-style:none;">${resetToken}</strong></h1>
-          <p style="color: white; ">This token will expire in 15 minutes.</p>
-        </div>
         </div>
       `,
     };
-    
 
+    // Send email
     await transporter.sendMail(mailOptions);
 
     res.status(200).json({ error: false, message: "Reset token sent to your email." });
