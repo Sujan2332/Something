@@ -1,26 +1,26 @@
 # *Something♾️ - Social Media Made Easy*
 
-## *Welcome to Something♾️, a dynamic social media platform designed to connect people, share memories, and bring the world together with seamless interactions. Whether you’re sharing photos, videos, or thoughts, ChimeSphere lets you do it all while providing an intuitive and engaging user experience.*
+## *Welcome to Something♾️, a dynamic social media platform designed to connect people, share memories, and bring the world together with seamless interactions. Whether you’re sharing photos, videos, or thoughts, Something♾️ lets you do it all while providing an intuitive and engaging user experience.*
 
 ## *📱 Features*
 
 ### *User Profiles:* ### 
 *Create and update your personal profile with a photo, bio, and more. Stay connected and share your stories!*
-### *File Uploads:*###
+### *File Uploads:* ###
 *Upload images, videos, and audio with ease. Our platform supports multiple file formats and automatically categorizes your uploads.*
 ### *Like/Dislike System:* ###
 *Show love for your favorite posts by liking or disliking content. Your preferences are saved and visible to you across sessions.*
-### *Interactive Comments:* #
+### *Interactive Comments:* ###
 *Share your thoughts with others through a commenting system. Every comment is valuable, and ChimeSphere brings your discussions to life.*
-### *Media Viewer:*###
+### *Media Viewer:* ###
 *Click on images or videos to open them in a full-screen modal. You can even download your favorite images to keep them forever.*
-### *Post Sharing:*###
+### *Post Sharing:* ###
 *Share posts with friends or social networks using the integrated Web Share API.*
-### *Scroll-based UI Interactions:*###
+### *Scroll-based UI Interactions:* ###
 *Enjoy smooth interactions with scroll-based animations that fade in/out UI elements for a modern feel.*
-### *Profile Updates:*###
+### *Profile Updates:* ###
 *Edit your profile details and picture directly from the platform. Your profile is always up to date and personalized.*
-### *Password Protection:*###
+### *Password Protection:* ###
 *Ensure the security of your account with robust login and signup forms, password visibility toggles, and more.*
 
 ## *🚀 Tech Stack*
