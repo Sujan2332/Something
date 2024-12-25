@@ -167,18 +167,20 @@ function ImageUploader() {
     
     // Create a FormData object to send both the user data and the file (profile photo)
     const formData = new FormData();
-    const profilephoto = user.profilephoto;
-    console.log(profilephoto);
+    // const profilephoto = user.profilephoto;
+    // console.log(profilephoto);
 
     // Append the updated user fields (e.g., username, email, etc.)
     for (const key in updatedUser) {
+      if (key !== 'profilephoto') {  // Ensure you don’t overwrite profile photo here
         formData.append(key, updatedUser[key]);
+      }
     }
     console.log("UPDATED PROFILE:", updatedUser.profilePhoto);
 
     // Append the profile photo if a new one is selected
-    if (updatedUser.profilephoto) {
-        formData.append('profilephoto', profilephoto);
+    if (selectedFile) {
+        formData.append('profilephoto',selectedFile);
     }
 
     // Send a PATCH request to update user data, including the file
@@ -295,6 +297,10 @@ const toggleHeart = async (uniqueId) => {
     const file = event.target.files[0];
     if (file) {
       setSelectedFile(file);
+      setUser({
+        ...user,
+        profilephoto: URL.createObjectURL(file), // Temporary URL for image preview
+      });
     }
   };
 
