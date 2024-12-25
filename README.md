@@ -131,8 +131,8 @@ git push origin feature-name
 ## *📜 License*
 ### *This project is licensed under the MIT License - see the LICENSE file for details.*
 
-📬 Contact
-For any questions, bugs, or feature requests, feel free to open an issue or contact us directly at [your-email@example.com].
+## *📬 Contact*
+### *For any questions, bugs, or feature requests, feel free to open an issue or contact us directly at saisujan.s03@gmail.com.*
 
-Thank you for exploring ChimeSphere! We hope you enjoy using it as much as we enjoyed building it. Feel free to contribute and make it even better!
+# *Thank you for exploring Something♾️! We hope you enjoy using it as much as we enjoyed building it. Feel free to contribute and make it even better!*
 
