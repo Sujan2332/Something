@@ -1,6 +1,6 @@
 # *Something♾️ - Social Media Made Easy*
 
-## *Welcome to ChimeSphere, a dynamic social media platform designed to connect people, share memories, and bring the world together with seamless interactions. Whether you’re sharing photos, videos, or thoughts, ChimeSphere lets you do it all while providing an intuitive and engaging user experience.*
+## *Welcome to Something♾️, a dynamic social media platform designed to connect people, share memories, and bring the world together with seamless interactions. Whether you’re sharing photos, videos, or thoughts, ChimeSphere lets you do it all while providing an intuitive and engaging user experience.*
 
 ## *📱 Features*
 
