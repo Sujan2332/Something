@@ -81,8 +81,13 @@ const Login = () => {
     }
     try {
     setloading(true);
+    const token = localStorage.getItem("resetToken");
       const response = await axios.post(`${API_BASE_URL}/api/users/reset-password/${resetToken}`, {
         password: newPassword,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Send the token in the Authorization header
+        },
       });
       setMessage(response.data.message);
       setNewPassword("");
