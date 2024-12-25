@@ -48,16 +48,16 @@ const App = () => {
       const stylesheets =
       theme === "dark"
       ? [
-        "../src/Something/Post.css",
-        "../src/Something/Login.css",
-        "../src/Something/Signup.css",
-        "../src/Something/Something.css",
+        "../Post.css",
+        "../Login.css",
+        "../Signup.css",
+        "../Something.css",
       ] :
       [
-        "../src/Something/PostLight.css",
-        "../src/Something/LoginLight.css",
-        "../src/Something/SignupLight.css",
-        "../src/Something/style.css",
+        "../PostLight.css",
+        "../LoginLight.css",
+        "../SignupLight.css",
+        "../style.css",
       ]
 
       stylesheets.forEach((href)=>{
