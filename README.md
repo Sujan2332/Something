@@ -1,6 +1,6 @@
 # *Something♾️* 
-## *Social Media Made Easy : *
-## Socialize Beyond Boundaries :* 
+## *Social Media Made Easy :*
+## *Socialize Beyond Boundaries :* 
 ## Transforming Connections : *
 ## *Redefining Experiences*
 
