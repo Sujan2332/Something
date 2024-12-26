@@ -88,6 +88,82 @@ npm start
 
 *The app should now be running on http://localhost:5173 for the frontend and http://localhost:5000 for the backend.*
 
+## *📁 File Structure*
+
+```
+SOMETHING/
+│
+├── Client/
+│   ├── dist/
+│   │   ├── assets/
+│   │   │   ├── _redirects
+│   │   │   ├── index.html
+│   │   │   └── vite.svg
+│   │   ├── node_modules/
+│   │
+│   ├── public/
+│   │   ├── _redirects
+│   │   ├── index.html
+│   │   ├── Login.css
+│   │   ├── LoginLight.css
+│   │   ├── Post.css
+│   │   ├── PostLight.css
+│   │   ├── Signup.css
+│   │   ├── SignupLight.css
+│   │   ├── Something.css
+│   │   ├── style.css
+│   │   └── vite.svg
+│   │
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── Something/
+│   │   │   ├── Login.jsx
+│   │   │   ├── Post.jsx
+│   │   │   ├── Signup.jsx
+│   │   │   └── Something.jsx
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   └── Profile.jpg
+│   │
+│   ├── .env
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   └── README.md
+│
+├── Server/
+│   ├── controllers/
+│   │   ├── something.controller.js
+│   │   └── users.controller.js
+│   │
+│   ├── middleware/
+│   │   ├── fileUpload.js
+│   │   └── uploadMiddleware.js
+│   │
+│   ├── models/
+│   │   ├── like.model.js
+│   │   ├── something.model.js
+│   │   └── user.model.js
+│   │
+│   ├── routes/
+│   │   ├── something.routes.js
+│   │   └── user.routes.js
+│   │
+│   ├── node_modules/
+│   ├── .env
+│   ├── .gitignore
+│   ├── index.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── render.yaml
+│   ├── vite.config.js
+│   └── README.md
+```
+
 ## *💡 How It Works*
 
 ### *1. 👤 User Registration & Login:*
