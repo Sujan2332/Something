@@ -52,7 +52,7 @@
    
 ```
 git clone https://github.com/yourusername/chimesphere.git
-cd chimesphere
+cd something
 ```
 ### *2. Install dependencies:*
    
