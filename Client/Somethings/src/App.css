@@ -87,27 +87,23 @@
     padding: 8px 15px; /* Reduce padding for small screens */
   }
 }
-
-/* Add a fade effect to the body or root element */
 body {
-  transition: background-color 0.05s ease, color 0.05s ease;
+  transition: 0s ease-in-out;
   opacity: 1;
-  /* transition: opacity 0.1s ease; */
+  display: block;
 }
-
-/* When loading the theme, set the opacity to 0 to prevent the FOUC */
-body.loading {
-  opacity: 0;
+body.loading{
+display: none;
 }
-
 /* Light Theme styles */
 body.light-theme {
-  background-color: #fff;
-  color: #000;
+  background: linear-gradient(white,blue); /* Full white for light theme */
+  color: #000; /* Black text */
+  animation: transitionToLight 2s forwards;
 }
-
 /* Dark Theme styles */
 body.dark-theme {
-  background-color: #333;
-  color: #fff;
+  background: linear-gradient(black,white); /* Dark gray background */
+  color: #fff; /* White text */
+  /* content: ; */
 }
