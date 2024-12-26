@@ -3,6 +3,11 @@
 
 ### *Welcome to Something♾️, a dynamic social media platform designed to connect people, share memories, and bring the world together with seamless interactions. Whether you’re sharing photos, videos, or thoughts, Something♾️ lets you do it all while providing an intuitive and engaging user experience.*
 
+## *🪟 Preview*
+
+*[Click here to preview](https://something-frontend.onrender.com)*
+
+
 ## *📱 Features*
 
 ### *👨🏻‍💼 User Profiles:* ### 
