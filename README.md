@@ -5,23 +5,23 @@
 
 ## *📱 Features*
 
-### *User Profiles:* ### 
+### *👨🏻‍💼User Profiles:* ### 
 *Create and update your personal profile with a photo, bio, and more. Stay connected and share your stories!*
-### *File Uploads:* ###
+### *📁File Uploads:* ###
 *Upload images, videos, and audio with ease. Our platform supports multiple file formats and automatically categorizes your uploads.*
-### *Like/Dislike System:* ###
+### *❤️Like/Dislike System:* ###
 *Show love for your favorite posts by liking or disliking content. Your preferences are saved and visible to you across sessions.*
-### *Interactive Comments:* ###
+### *📝Interactive Comments:* ###
 *Share your thoughts with others through a commenting system. Every comment is valuable, and ChimeSphere brings your discussions to life.*
-### *Media Viewer:* ###
+### *▶️Media Viewer:* ###
 *Click on images or videos to open them in a full-screen modal. You can even download your favorite images to keep them forever.*
-### *Post Sharing:* ###
+### *✉️Post Sharing:* ###
 *Share posts with friends or social networks using the integrated Web Share API.*
-### *Scroll-based UI Interactions:* ###
+### *✨Scroll-based UI Interactions:* ###
 *Enjoy smooth interactions with scroll-based animations that fade in/out UI elements for a modern feel.*
-### *Profile Updates:* ###
+### *👤Profile Updates:* ###
 *Edit your profile details and picture directly from the platform. Your profile is always up to date and personalized.*
-### *Password Protection:* ###
+### *🔐Password Protection:* ###
 *Ensure the security of your account with robust login and signup forms, password visibility toggles, and more.*
 
 ## *🚀 Tech Stack*
@@ -135,5 +135,5 @@ git push origin feature-name
 ## *📬 Contact*
 ### *For any questions, bugs, or feature requests, feel free to open an issue or contact us directly at saisujan.s03@gmail.com.*
 
-# *Thank you for exploring Something♾️! We hope you enjoy using it as much as we enjoyed building it. Feel free to contribute and make it even better!*
+# *Thank you for exploring Something♾️! I hope you enjoy using it as much as we enjoyed building it. Feel free to contribute and make it even better!*
 
