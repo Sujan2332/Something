@@ -1192,7 +1192,7 @@ const formatTextWithLinksAndHashtags = (text) => {
         <p style={{marginTop:"-10px",textDecoration:"none"}}>{comment.username}</p>
       </div>
       <hr style={{marginTop:"-10px",marginBottom:"10px"}}/>
-      <p style={{ textAlign: "left", width: "100%",textAlign:"center" }}>
+      <p style={{ textAlign: "left", width: "100%" }}>
       {formatTextWithLinksAndHashtags(comment.text)} {/* Assuming 'text' is the field name for the comment */}
       </p>
     </div>
