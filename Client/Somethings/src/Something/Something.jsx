@@ -2,7 +2,7 @@ import React, { useState,useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 import axios from "axios";
-function ImageUploader() {
+function Something() {
   const [text, setText] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploads, setUploads] = useState([]);
@@ -1209,4 +1209,4 @@ const formatTextWithLinksAndHashtags = (text) => {
   );
 }
 
-export default ImageUploader;
+export default Something;
