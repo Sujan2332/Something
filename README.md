@@ -5,23 +5,23 @@
 
 ## *📱 Features*
 
-### *👨🏻‍💼User Profiles:* ### 
+### *👨🏻‍💼 User Profiles:* ### 
 *Create and update your personal profile with a photo, bio, and more. Stay connected and share your stories!*
-### *📁File Uploads:* ###
+### *📁 File Uploads:* ###
 *Upload images, videos, and audio with ease. Our platform supports multiple file formats and automatically categorizes your uploads.*
-### *❤️Like/Dislike System:* ###
+### *❤️ Like/Dislike System:* ###
 *Show love for your favorite posts by liking or disliking content. Your preferences are saved and visible to you across sessions.*
-### *📝Interactive Comments:* ###
+### *📝 Interactive Comments:* ###
 *Share your thoughts with others through a commenting system. Every comment is valuable, and ChimeSphere brings your discussions to life.*
-### *▶️Media Viewer:* ###
+### *▶️ Media Viewer:* ###
 *Click on images or videos to open them in a full-screen modal. You can even download your favorite images to keep them forever.*
-### *✉️Post Sharing:* ###
+### *✉️ Post Sharing:* ###
 *Share posts with friends or social networks using the integrated Web Share API.*
-### *✨Scroll-based UI Interactions:* ###
+### *✨ Scroll-based UI Interactions:* ###
 *Enjoy smooth interactions with scroll-based animations that fade in/out UI elements for a modern feel.*
-### *👤Profile Updates:* ###
+### *👤 Profile Updates:* ###
 *Edit your profile details and picture directly from the platform. Your profile is always up to date and personalized.*
-### *🔐Password Protection:* ###
+### *🔐 Password Protection:* ###
 *Ensure the security of your account with robust login and signup forms, password visibility toggles, and more.*
 
 ## *🚀 Tech Stack*
@@ -85,27 +85,27 @@ npm start
 
 ## *💡 How It Works*
 
-### *1. User Registration & Login:*
+### *1. 👤 User Registration & Login:*
 *New users can sign up with their basic details (username, email, password) and upload a profile photo. Existing users can log in using their credentials to access the platform.*
 
-### *2. Posting Content:*
+### *2. 📝 Posting Content:*
 *Users can upload different types of media (images, videos, and audio). Once uploaded, posts are displayed in the feed, and users can interact with them by liking, commenting, and sharing.*
 
-### *3. Interactions:*
+### *3. 🗣️ Interactions:*
 *Users can like/dislike posts, share them via the Web Share API, and leave comments for engagement. The post owner can delete their posts anytime.*
 
-### *4. Profile Updates:*
+### *4. 👨🏻‍💼 Profile Updates:*
 *Users can update their profile information and photo at any time, making the experience personal and flexible.*
 
 ## *🔒 Security & Privacy*
 
-### *Secure Login:*
+### *🔐 Secure Login:*
 *Passwords are hashed and secured using industry-standard methods.*
 
-### *Private Profiles:*
+### *🪪 Private Profiles:*
 *Your data is yours. Only you can modify your profile and posts.*
 
-### *Data Encryption:*
+### *🔑 Data Encryption:*
 *All sensitive data is transmitted over HTTPS for security.*
 
 ## *🎨 Styling*
