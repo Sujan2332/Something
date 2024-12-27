@@ -97,12 +97,12 @@ display: none;
 }
 /* Light Theme styles */
 body.light-theme {
-  background: linear-gradient(white,blue); /* Full white for light theme */
+  background: white; /* Full white for light theme */
   color: #000; /* Black text */
 }
 /* Dark Theme styles */
 body.dark-theme {
-  background: linear-gradient(black,white); /* Dark gray background */
+  background: black; /* Dark gray background */
   color: #fff; /* White text */
   /* content: ; */
 }
