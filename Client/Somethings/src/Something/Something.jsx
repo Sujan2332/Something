@@ -824,6 +824,9 @@ const formatTextWithLinksAndHashtags = (text) => {
             <li>
               <a href="https://sujan2332.github.io/WeatherApp/"><i class="fa-solid fa-cloud-bolt"></i> Weather</a>
             </li>
+            <li>
+              <a href="https://sujan2332.github.io/RTR/"><i class="fa-solid fa-car"></i> Traffic Racer</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -862,6 +865,10 @@ const formatTextWithLinksAndHashtags = (text) => {
               <i className="fa-solid fa-cloud-bolt"></i> Weather
             </a>
           </li>
+          <li>
+              <a href="https://sujan2332.github.io/RTR/">
+              <i class="fa-solid fa-car"></i> Traffic Racer</a>
+            </li>
         </ul>
       )}
     </div>
