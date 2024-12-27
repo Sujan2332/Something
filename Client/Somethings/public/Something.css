@@ -41,6 +41,7 @@ body{
   position: relative;
   width: auto;
 }
+
 .Navbar{
   width: 70%;
   display: flex;
@@ -173,6 +174,7 @@ body{
   border: 1px solid white;
   border-radius: 15px;
   border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   display: none;
   flex-direction: column;
   position: fixed;
@@ -383,7 +385,9 @@ color: blue;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-
+.dropdown-menu li{
+  border: none;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

@@ -27,6 +27,8 @@ function Something() {
   const [isVisible, setIsVisible] = useState(true); // Track visibility based on interaction
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const mediaRefs = useRef([])
+  console.log("SELECTED FILE",selectedFile)
+  console.log("UPDAte used",updatedUser)
   const handlePlay = (index, type) => {
     // Pause all media except the one being played
     mediaRefs.current.forEach((media, i) => {
@@ -164,45 +166,45 @@ function Something() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Create a FormData object to send both the user data and the file (profile photo)
-    const formData = new FormData();
-    // const profilephoto = user.profilephoto;
-    // console.log(profilephoto);
 
-    // Append the updated user fields (e.g., username, email, etc.)
+    // Create a FormData object to send both user data and the profile photo
+    const formData = new FormData();
+
+    // Append updated user fields (e.g., username, email, etc.)
     for (const key in updatedUser) {
-      if (key !== 'profilephoto') {  // Ensure you don’t overwrite profile photo here
-        formData.append(key, updatedUser[key]);
-      }
+        if (key !== 'profilephoto') {  // Skip profile photo in updatedUser
+            formData.append(key, updatedUser[key]);
+        }
     }
-    console.log("UPDATED PROFILE:", updatedUser.profilePhoto);
+
+    console.log("Updated Profile Data:", updatedUser);
 
     // Append the profile photo if a new one is selected
     if (selectedFile) {
-        formData.append('profilephoto',selectedFile);
+        formData.append('profilephoto', selectedFile);
+        console.log("New Profile Photo Selected:", selectedFile);
     }
 
-    // Send a PATCH request to update user data, including the file
+    // Make a PATCH request to update user data
     axios.patch(`${backend}/api/users/update/${userId}`, formData)
         .then(response => {
-            console.log("Profile updated successfully", response);
-            setUser(updatedUser); // Update the user state with the new data
-            setIsEditing(false); // Exit edit mode
+            console.log("Profile updated successfully:", response);
+            
+            setUser(updatedUser);  // Update user state with new data
+            setIsEditing(false);  // Exit edit mode
             setIsLoading(false);
             alert("Profile Updated Successfully");
             window.location.reload();
-          
         })
         .catch(error => {
             console.error("Error updating profile:", error);
             setIsLoading(false);
             alert(`Error updating profile: ${
-              error.response?.data?.details || 
-              error.response?.data?.message || 
-              error.message || 
-              "An unexpected error occurred. Please try again."
-          }`);
+                error.response?.data?.details || 
+                error.response?.data?.message || 
+                error.message || 
+                "An unexpected error occurred. Please try again."
+            }`);
         });
 };
 
@@ -695,6 +697,7 @@ const formatTextWithLinksAndHashtags = (text) => {
             style={{
               width: "80px",
               height: "80px",
+              border:"2px solid white",
               borderRadius: "50%",
               marginBottom: "5px",
             }}
@@ -788,7 +791,7 @@ const formatTextWithLinksAndHashtags = (text) => {
               </div>
             ) : (
               <div className="editprofile" style={{display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center",gap:"20px",height:"70%",width:"80%",marginTop:"-50px"}}>
-                <img src={handleProfilePhoto()} width="100px" height="100px" alt="" style={{borderRadius:"50%"}} />
+                <img src={handleProfilePhoto()} width="100px" height="100px" alt="" style={{borderRadius:"50%",border:"2px solid white"}} />
                 <h3> <span style={{textDecoration:"underline",marginRight:"10px"}}>Username: </span> <br />{updatedUser.username}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Email: </span><br /> {updatedUser.email}</h3>
                 <h3><span style={{textDecoration:"underline",marginRight:"10px"}}>Phone No.: </span><br /> {updatedUser.phone}</h3>
